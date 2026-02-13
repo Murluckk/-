@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import Image from "next/image";
-import { useGameStore, usePillEvolution } from "@/store/gameStore";
+import { useGameStore, usePillEvolution, useHasGoldenPill } from "@/store/gameStore";
 import FloatingNumbers from "./FloatingNumbers";
 import type { FloatingNumber } from "@/types/game";
 
@@ -22,17 +22,12 @@ const EVOLUTION_CLASSES: Record<string, string> = {
   divine: "pill-divine",
 };
 
-interface PillButtonProps {
-  onClickValue?: (value: number, x: number, y: number) => void;
-}
-
-export default function PillButton({ onClickValue }: PillButtonProps) {
+export default function PillButton() {
   const performClick = useGameStore((s) => s.performClick);
-  const hasGolden = useGameStore((s) => s.hasGoldenPill());
+  const hasGolden = useHasGoldenPill();
   const evolution = usePillEvolution();
 
   const [isAnimating, setIsAnimating] = useState(false);
-  const [shaking, setShaking] = useState(false);
   const [floatingNumbers, setFloatingNumbers] = useState<FloatingNumber[]>([]);
   const floatIdRef = useRef(0);
 
@@ -65,11 +60,8 @@ export default function PillButton({ onClickValue }: PillButtonProps) {
       // Click animation
       setIsAnimating(true);
       setTimeout(() => setIsAnimating(false), 150);
-
-      // Notify parent
-      onClickValue?.(value, clientX, clientY);
     },
-    [performClick, onClickValue]
+    [performClick]
   );
 
   const pillFilter = hasGolden
@@ -85,7 +77,7 @@ export default function PillButton({ onClickValue }: PillButtonProps) {
       <div
         className={`cursor-pointer active:cursor-grabbing select-none transition-transform ${
           isAnimating ? "click-animate" : ""
-        } ${shaking ? "shake" : ""} ${pillClass}`}
+        } ${pillClass}`}
         onClick={handleClick}
         onTouchStart={handleClick}
         style={{
@@ -104,7 +96,6 @@ export default function PillButton({ onClickValue }: PillButtonProps) {
         />
       </div>
 
-      {/* Floating numbers */}
       <FloatingNumbers numbers={floatingNumbers} />
     </>
   );

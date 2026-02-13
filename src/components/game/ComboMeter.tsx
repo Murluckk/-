@@ -1,13 +1,14 @@
 "use client";
 
-import { useCombo } from "@/store/gameStore";
+import { useComboCount, useComboMultiplier, useComboActive } from "@/store/gameStore";
 
 export default function ComboMeter() {
-  const { count, multiplier, active } = useCombo();
+  const count = useComboCount();
+  const multiplier = useComboMultiplier();
+  const active = useComboActive();
 
   if (count < 3) return null;
 
-  // Intensity for visual scaling (0-1)
   const intensity = Math.min(count / 50, 1);
 
   return (
