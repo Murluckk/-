@@ -11,6 +11,7 @@ import PhrasePopup from "@/components/game/PhrasePopup";
 import ComboMeter from "@/components/game/ComboMeter";
 import RageOverlay from "@/components/game/RageOverlay";
 import ShopPanel from "@/components/shop/ShopPanel";
+import SidePhrases from "@/components/game/SidePhrases";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -65,6 +66,9 @@ export default function Home() {
           />
         ))}
       </div>
+
+      {/* Side-flying phrases */}
+      <SidePhrases />
 
       {/* Rage overlay */}
       <RageOverlay />

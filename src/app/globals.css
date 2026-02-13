@@ -187,3 +187,48 @@ body {
   background: #2a2a3e;
   border-radius: 2px;
 }
+
+/* ─── Side-flying phrases ────────────────────────── */
+@keyframes flyFromLeft {
+  0% {
+    transform: translateX(-100%) rotate(-3deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.9;
+    transform: translateX(30vw) rotate(1deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(45vw) rotate(2deg) scale(0.8);
+  }
+}
+
+@keyframes flyFromRight {
+  0% {
+    transform: translateX(100%) rotate(3deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.9;
+    transform: translateX(-30vw) rotate(-1deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-45vw) rotate(-2deg) scale(0.8);
+  }
+}
+
+.side-phrase-left {
+  animation: flyFromLeft 2.5s ease-out forwards;
+}
+
+.side-phrase-right {
+  animation: flyFromRight 2.5s ease-out forwards;
+}
