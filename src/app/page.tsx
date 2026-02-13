@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useGameStore } from "@/store/gameStore";
+import { useGameStore, useAutoClickRate } from "@/store/gameStore";
 import { useAutoClicker } from "@/hooks/useAutoClicker";
 import { useComboDecay } from "@/hooks/useComboDecay";
 import PillButton from "@/components/game/PillButton";
@@ -17,20 +17,22 @@ export default function Home() {
   const toggleShop = useGameStore((s) => s.toggleShop);
   const updatePillEvolution = useGameStore((s) => s.updatePillEvolution);
   const level = useGameStore((s) => s.level);
-  const autoRate = useGameStore((s) => s.getAutoClickRate());
+  const autoRate = useAutoClickRate();
 
   // Initialize hooks
   useAutoClicker();
   useComboDecay();
 
   useEffect(() => {
+    // Manually rehydrate from localStorage after mount (SSR-safe)
+    useGameStore.persist.rehydrate();
     setMounted(true);
   }, []);
 
   // Update pill evolution on level change
   useEffect(() => {
-    updatePillEvolution();
-  }, [level, updatePillEvolution]);
+    if (mounted) updatePillEvolution();
+  }, [level, mounted, updatePillEvolution]);
 
   if (!mounted) {
     return (

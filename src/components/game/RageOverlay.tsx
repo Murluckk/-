@@ -1,9 +1,10 @@
 "use client";
 
-import { useRage } from "@/store/gameStore";
+import { useRageActive, useRageIntensity } from "@/store/gameStore";
 
 export default function RageOverlay() {
-  const { active, intensity } = useRage();
+  const active = useRageActive();
+  const intensity = useRageIntensity();
 
   if (!active) return null;
 
@@ -17,7 +18,6 @@ export default function RageOverlay() {
         animation: `rageShake ${0.1 - intensity * 0.05}s ease-in-out infinite`,
       }}
     >
-      {/* Vignette effect */}
       <div
         className="absolute inset-0"
         style={{

@@ -1,18 +1,29 @@
 "use client";
 
-import { useGameStore, useShopOpen, useCurrentClicks } from "@/store/gameStore";
+import { useGameStore, useShopOpen, useCurrentClicks, usePrestigeCount } from "@/store/gameStore";
 import { UPGRADES } from "@/lib/upgrades";
 import UpgradeCard from "./UpgradeCard";
 import { formatNumber } from "@/components/game/ClickCounter";
+
+const PRESTIGE_THRESHOLDS = [100_000, 1_000_000, 10_000_000, 100_000_000];
+
+function getPrestigeThreshold(count: number): number {
+  if (count < PRESTIGE_THRESHOLDS.length) {
+    return PRESTIGE_THRESHOLDS[count];
+  }
+  return (
+    PRESTIGE_THRESHOLDS[PRESTIGE_THRESHOLDS.length - 1] *
+    Math.pow(10, count - PRESTIGE_THRESHOLDS.length + 1)
+  );
+}
 
 export default function ShopPanel() {
   const shopOpen = useShopOpen();
   const toggleShop = useGameStore((s) => s.toggleShop);
   const currentClicks = useCurrentClicks();
-  const canPrestige = useGameStore((s) => s.canPrestige);
   const performPrestige = useGameStore((s) => s.performPrestige);
-  const prestigeCount = useGameStore((s) => s.prestigeCount);
-  const getPrestigeThreshold = useGameStore((s) => s.getPrestigeThreshold);
+  const prestigeCount = usePrestigeCount();
+  const clicks = useGameStore((s) => s.clicks);
 
   if (!shopOpen) return null;
 
@@ -20,20 +31,17 @@ export default function ShopPanel() {
   const multiUpgrades = UPGRADES.filter((u) => u.category === "multiplier");
   const cosmeticUpgrades = UPGRADES.filter((u) => u.category === "cosmetic");
 
-  const prestigeAvailable = canPrestige();
-  const prestigeThreshold = getPrestigeThreshold();
+  const prestigeThreshold = getPrestigeThreshold(prestigeCount);
+  const prestigeAvailable = clicks >= prestigeThreshold;
 
   return (
     <div className="fixed inset-0 z-40 flex items-end justify-center">
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={toggleShop}
       />
 
-      {/* Panel */}
       <div className="relative z-50 w-full max-w-md bg-[#0d0d14] border-t border-green-500/20 rounded-t-2xl max-h-[70vh] overflow-hidden animate-slide-up">
-        {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-[#1f1f2a]">
           <div>
             <h2 className="text-lg font-bold text-green-400 font-mono">
@@ -51,9 +59,7 @@ export default function ShopPanel() {
           </button>
         </div>
 
-        {/* Scrollable content */}
         <div className="overflow-y-auto max-h-[calc(70vh-80px)] px-4 py-3 space-y-4 scrollbar-thin">
-          {/* Prestige button */}
           {(prestigeAvailable || prestigeCount > 0) && (
             <div className="space-y-2">
               <h3 className="text-xs font-mono text-yellow-400 uppercase tracking-wider">
@@ -86,7 +92,6 @@ export default function ShopPanel() {
             </div>
           )}
 
-          {/* Auto-clickers */}
           <div className="space-y-2">
             <h3 className="text-xs font-mono text-gray-500 uppercase tracking-wider">
               Auto-Clickers
@@ -96,7 +101,6 @@ export default function ShopPanel() {
             ))}
           </div>
 
-          {/* Multipliers */}
           <div className="space-y-2">
             <h3 className="text-xs font-mono text-gray-500 uppercase tracking-wider">
               Click Power
@@ -106,7 +110,6 @@ export default function ShopPanel() {
             ))}
           </div>
 
-          {/* Cosmetics */}
           <div className="space-y-2">
             <h3 className="text-xs font-mono text-gray-500 uppercase tracking-wider">
               Cosmetics
