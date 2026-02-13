@@ -56,6 +56,89 @@ export const ALON_PHRASES = [
   "You're either clicking or you're ngmi",
 ];
 
+// Short punchy side-flying phrases (these fly in from left/right)
+export const SIDE_PHRASES = [
+  // Hype
+  "LFG",
+  "SEND IT",
+  "BULLISH",
+  "PUMP IT",
+  "MOON SOON",
+  "WAGMI",
+  "BASED",
+  "FULL SEND",
+  "NO BRAKES",
+  "INJECT IT",
+  "LEGENDARY",
+  "GODLIKE",
+  "INSANE",
+  "CLICK KING",
+  "DEGEN MODE",
+  "UP ONLY",
+  "MASSIVE",
+  "MEGA PUMP",
+  "14K MAXI",
+  "FADED",
+  // Crypto/degen
+  "gm",
+  "ngmi if you stop",
+  "rug proof",
+  "diamond clicks",
+  "paper hands OUT",
+  "whale alert",
+  "liquidity: YOU",
+  "floor is rising",
+  "supply: burned",
+  "demand: infinite",
+  "airdrop when?",
+  "mint it",
+  "stack sats click pills",
+  "this IS the alpha",
+  "free money glitch",
+  "generational click",
+  "ape in harder",
+  "we're so early",
+  "1 click = 1 respect",
+  "imagine selling",
+  // Motivational chaos
+  "KEEP GOING",
+  "DON'T STOP",
+  "FASTER",
+  "MORE",
+  "AGAIN",
+  "HARDER",
+  "YES",
+  "UNSTOPPABLE",
+  "RELENTLESS",
+  "OBSESSED",
+  "ADDICTED",
+  "ONE MORE",
+  "INFINITE",
+  "ASCEND",
+  "EVOLVE",
+  "TRANSCEND",
+  "POWER UP",
+  "LEVEL UP",
+  "BEYOND",
+  "MAXIMUM",
+  // Funny/absurd
+  "ur mom would be proud",
+  "touching pill not grass",
+  "boss hates this trick",
+  "doctors HATE him",
+  "one weird click trick",
+  "certified clicker moment",
+  "pilllionaire grindset",
+  "the SEC can't stop this",
+  "not a cult btw",
+  "this is financial advice",
+  "in pill we trust",
+  "broke: working | woke: clicking",
+  "tell ur friends",
+  "ratio + you click slow",
+  "skill issue if you stop",
+];
+
 // Boss fight phrases
 export const BOSS_PHRASES = [
   "Boss incoming! CLICK OR DIE",
@@ -115,10 +198,15 @@ export const EASTER_EGG_PHRASES: Record<number, string> = {
   100000: "100K club. You're certified.",
 };
 
-// Get a random phrase from any general category
+// Get a random phrase from general + alon
 export function getRandomPhrase(): string {
   const all = [...GENERAL_PHRASES, ...ALON_PHRASES];
   return all[Math.floor(Math.random() * all.length)];
+}
+
+// Get a random side phrase
+export function getRandomSidePhrase(): string {
+  return SIDE_PHRASES[Math.floor(Math.random() * SIDE_PHRASES.length)];
 }
 
 // Get a random phrase from a specific category
