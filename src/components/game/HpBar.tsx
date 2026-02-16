@@ -17,7 +17,7 @@ export default function HpBar() {
           HP {hpCurrent}/{hpMax}
         </span>
         {level > 0 && (
-          <span className="text-xs font-mono text-green-400 font-bold">
+          <span className="text-xs font-mono text-[#2d6a4f] font-bold">
             LVL {level}
           </span>
         )}
@@ -28,7 +28,7 @@ export default function HpBar() {
           style={{ width: `${hpPercent}%` }}
         />
       </div>
-      <p className="text-[10px] text-gray-700 mt-2 text-center font-mono">
+      <p className="text-[10px] text-gray-400 mt-2 text-center font-mono">
         {level < 5
           ? "fill the bar. something happens at LVL UP..."
           : level < 20

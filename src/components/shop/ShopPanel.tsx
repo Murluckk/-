@@ -41,10 +41,10 @@ export default function ShopPanel() {
         onClick={toggleShop}
       />
 
-      <div className="relative z-50 w-full max-w-md bg-[#0d0d14] border-t border-green-500/20 rounded-t-2xl max-h-[70vh] overflow-hidden animate-slide-up">
-        <div className="flex items-center justify-between px-5 py-4 border-b border-[#1f1f2a]">
+      <div className="relative z-50 w-full max-w-md bg-white border-t border-[#2d6a4f]/20 rounded-t-2xl max-h-[70vh] overflow-hidden animate-slide-up shadow-xl">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
           <div>
-            <h2 className="text-lg font-bold text-green-400 font-mono">
+            <h2 className="text-lg font-bold text-[#1b4332] font-mono">
               UPGRADE SHOP
             </h2>
             <p className="text-xs text-gray-500 font-mono">
@@ -53,7 +53,7 @@ export default function ShopPanel() {
           </div>
           <button
             onClick={toggleShop}
-            className="w-8 h-8 flex items-center justify-center rounded-lg bg-[#1a1a2e] text-gray-400 hover:text-white transition-colors"
+            className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 text-gray-500 hover:text-gray-800 transition-colors"
           >
             ✕
           </button>
@@ -62,7 +62,7 @@ export default function ShopPanel() {
         <div className="overflow-y-auto max-h-[calc(70vh-80px)] px-4 py-3 space-y-4 scrollbar-thin">
           {(prestigeAvailable || prestigeCount > 0) && (
             <div className="space-y-2">
-              <h3 className="text-xs font-mono text-yellow-400 uppercase tracking-wider">
+              <h3 className="text-xs font-mono text-amber-600 uppercase tracking-wider">
                 Prestige
               </h3>
               <button
@@ -74,8 +74,8 @@ export default function ShopPanel() {
                 disabled={!prestigeAvailable}
                 className={`w-full px-4 py-3 rounded-xl border font-mono text-sm transition-all ${
                   prestigeAvailable
-                    ? "bg-yellow-900/20 border-yellow-500/40 text-yellow-300 hover:border-yellow-400/60 hover:bg-yellow-900/30 cursor-pointer animate-pulse"
-                    : "bg-[#141419] border-[#1f1f2a] text-gray-600 cursor-not-allowed"
+                    ? "bg-amber-50 border-amber-400/40 text-amber-700 hover:border-amber-400/60 hover:bg-amber-100 cursor-pointer animate-pulse"
+                    : "bg-gray-50 border-gray-200 text-gray-400 cursor-not-allowed"
                 }`}
               >
                 {prestigeAvailable ? (
@@ -93,7 +93,7 @@ export default function ShopPanel() {
           )}
 
           <div className="space-y-2">
-            <h3 className="text-xs font-mono text-gray-500 uppercase tracking-wider">
+            <h3 className="text-xs font-mono text-gray-400 uppercase tracking-wider">
               Auto-Clickers
             </h3>
             {autoUpgrades.map((u) => (
@@ -102,7 +102,7 @@ export default function ShopPanel() {
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-xs font-mono text-gray-500 uppercase tracking-wider">
+            <h3 className="text-xs font-mono text-gray-400 uppercase tracking-wider">
               Click Power
             </h3>
             {multiUpgrades.map((u) => (
@@ -111,7 +111,7 @@ export default function ShopPanel() {
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-xs font-mono text-gray-500 uppercase tracking-wider">
+            <h3 className="text-xs font-mono text-gray-400 uppercase tracking-wider">
               Cosmetics
             </h3>
             {cosmeticUpgrades.map((u) => (

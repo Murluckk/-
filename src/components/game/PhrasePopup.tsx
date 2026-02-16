@@ -43,7 +43,7 @@ export default function PhrasePopup() {
 
   return (
     <div className={`absolute -top-16 z-20 phrase-popup ${shaking ? "shake" : ""}`}>
-      <div className="bg-[#1a1a2e] border border-green-500/30 rounded-xl px-5 py-3 text-green-300 font-bold text-sm md:text-base shadow-[0_0_20px_rgba(74,222,128,0.2)] max-w-[280px] text-center">
+      <div className="bg-white border border-[#2d6a4f]/30 rounded-xl px-5 py-3 text-[#1b4332] font-bold text-sm md:text-base shadow-[0_0_20px_rgba(45,106,79,0.15)] max-w-[280px] text-center">
         &ldquo;{phrase}&rdquo;
       </div>
     </div>

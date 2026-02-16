@@ -37,8 +37,8 @@ export default function Home() {
 
   if (!mounted) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0b0b0f]">
-        <div className="text-2xl text-green-400 font-mono animate-pulse">
+      <div className="flex min-h-screen items-center justify-center bg-[#f5f5f5]">
+        <div className="text-2xl text-[#2d6a4f] font-mono animate-pulse">
           Loading 14k...
         </div>
       </div>
@@ -46,16 +46,16 @@ export default function Home() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between bg-[#0b0b0f] relative overflow-hidden">
+    <div className="flex min-h-screen flex-col items-center justify-between bg-[#f5f5f5] relative overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0b0b0f] via-[#0d1a0d] to-[#0b0b0f] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#f5f5f5] via-[#eef5f0] to-[#f5f5f5] pointer-events-none" />
 
       {/* Floating particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {Array.from({ length: 15 }).map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full bg-green-500/10"
+            className="absolute rounded-full bg-[#2d6a4f]/10"
             style={{
               width: `${3 + (i % 5)}px`,
               height: `${3 + (i % 5)}px`,
@@ -76,7 +76,7 @@ export default function Home() {
       {/* Header */}
       <header className="relative z-10 w-full flex flex-col items-center pt-8 pb-4 px-4">
         <h1 className="text-4xl md:text-5xl font-black tracking-tight">
-          <span className="text-green-400 drop-shadow-[0_0_15px_rgba(74,222,128,0.5)]">
+          <span className="text-[#1b4332] drop-shadow-[0_0_15px_rgba(45,106,79,0.3)]">
             14k
           </span>
         </h1>
@@ -95,7 +95,7 @@ export default function Home() {
       <div className="relative z-10 flex flex-col items-center flex-1 justify-center">
         <PhrasePopup />
         <PillButton />
-        <p className="text-xs text-gray-600 mt-4 font-mono animate-pulse">
+        <p className="text-xs text-gray-400 mt-4 font-mono animate-pulse">
           tap to click
         </p>
       </div>
@@ -107,12 +107,12 @@ export default function Home() {
       <div className="relative z-10 w-full max-w-sm px-6 pb-4 flex items-center justify-between">
         <button
           onClick={toggleShop}
-          className="bg-[#1a1a2e] border border-green-500/30 rounded-xl px-5 py-2.5 text-green-400 font-mono font-bold text-sm hover:border-green-400/50 hover:bg-[#1f1f35] active:scale-95 transition-all"
+          className="bg-white border border-[#2d6a4f]/30 rounded-xl px-5 py-2.5 text-[#2d6a4f] font-mono font-bold text-sm hover:border-[#2d6a4f]/50 hover:bg-[#eef5f0] active:scale-95 transition-all shadow-sm"
         >
           SHOP
         </button>
         {autoRate > 0 && (
-          <span className="text-xs text-gray-500 font-mono">
+          <span className="text-xs text-gray-400 font-mono">
             +{autoRate}/sec
           </span>
         )}
@@ -123,7 +123,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="relative z-10 pb-4 text-center">
-        <p className="text-[10px] text-gray-700 font-mono">
+        <p className="text-[10px] text-gray-400 font-mono">
           built on pump.fun
         </p>
       </footer>

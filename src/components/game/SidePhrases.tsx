@@ -14,14 +14,14 @@ interface SidePhrase {
 }
 
 const COLORS = [
-  "text-green-400",
-  "text-green-300",
-  "text-emerald-400",
-  "text-lime-400",
-  "text-teal-400",
-  "text-cyan-400",
-  "text-yellow-400",
-  "text-amber-400",
+  "text-[#1b4332]",
+  "text-[#2d6a4f]",
+  "text-[#40916c]",
+  "text-[#3a5a40]",
+  "text-[#344e41]",
+  "text-[#4a7c59]",
+  "text-[#5a7d5a]",
+  "text-[#2c5530]",
 ];
 
 const TRIGGER_EVERY = 5; // spawn a side phrase every N clicks
@@ -85,7 +85,7 @@ export default function SidePhrases() {
             top: `${p.y}%`,
             fontSize: `${p.size}rem`,
             [p.side]: 0,
-            textShadow: "0 0 10px currentColor, 0 0 30px rgba(0,0,0,0.5)",
+            textShadow: "0 0 8px rgba(45,106,79,0.3), 0 0 20px rgba(45,106,79,0.1)",
             opacity: 0.85,
           }}
         >

@@ -30,25 +30,25 @@ export default function ClickCounter() {
   return (
     <div className="relative z-10 flex flex-col items-center">
       <div
-        className={`text-5xl md:text-7xl font-black font-mono text-green-400 transition-all ${
+        className={`text-5xl md:text-7xl font-black font-mono text-[#1b4332] transition-all ${
           pulse ? "counter-pulse" : ""
         }`}
         style={{
-          textShadow: "0 0 20px rgba(74, 222, 128, 0.4)",
+          textShadow: "0 0 20px rgba(45, 106, 79, 0.3)",
         }}
       >
         {formatNumber(clicks)}
       </div>
       <div className="flex items-center gap-3 mt-1">
-        <span className="text-xs text-gray-600 font-mono">CLICKS</span>
+        <span className="text-xs text-gray-500 font-mono">CLICKS</span>
         {multiplier > 1 && (
-          <span className="text-xs text-yellow-400 font-mono font-bold">
+          <span className="text-xs text-amber-600 font-mono font-bold">
             x{multiplier}
           </span>
         )}
       </div>
       {currentClicks !== clicks && (
-        <div className="text-xs text-gray-500 font-mono mt-0.5">
+        <div className="text-xs text-gray-400 font-mono mt-0.5">
           {formatNumber(currentClicks)} spendable
         </div>
       )}
