@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const TOKEN_MINT = "H6KgtksNwiEe3bBpAcXFcC7za3d3V9Y4inayFyCPyy4j";
+const TOKEN_MINT = "9zHs8yjDLVyn81boYdehnFvE1kvCoC2MQwzg7LXUpump";
 const SOLANA_RPC = "https://api.mainnet-beta.solana.com";
 const ELIGIBLE_USD = 10;
 

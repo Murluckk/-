@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const TOKEN_MINT = "H6KgtksNwiEe3bBpAcXFcC7za3d3V9Y4inayFyCPyy4j";
+const TOKEN_MINT = "9zHs8yjDLVyn81boYdehnFvE1kvCoC2MQwzg7LXUpump";
 
 export async function GET() {
   try {
