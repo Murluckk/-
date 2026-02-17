@@ -12,6 +12,8 @@ import ComboMeter from "@/components/game/ComboMeter";
 import RageOverlay from "@/components/game/RageOverlay";
 import ShopPanel from "@/components/shop/ShopPanel";
 import SidePhrases from "@/components/game/SidePhrases";
+import WalletChecker from "@/components/game/WalletChecker";
+import MarketCapBar from "@/components/game/MarketCapBar";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -103,14 +105,31 @@ export default function Home() {
       {/* HP Bar */}
       <HpBar />
 
-      {/* Bottom bar: Shop + stats */}
+      {/* Market Cap Bar (fixed right side) */}
+      <MarketCapBar />
+
+      {/* Bottom bar: Shop + Wallet + Twitter + stats */}
       <div className="relative z-10 w-full max-w-sm px-6 pb-4 flex items-center justify-between">
-        <button
-          onClick={toggleShop}
-          className="bg-white border border-[#2d6a4f]/30 rounded-xl px-5 py-2.5 text-[#2d6a4f] font-mono font-bold text-sm hover:border-[#2d6a4f]/50 hover:bg-[#eef5f0] active:scale-95 transition-all shadow-sm"
-        >
-          SHOP
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={toggleShop}
+            className="bg-white border border-[#2d6a4f]/30 rounded-xl px-5 py-2.5 text-[#2d6a4f] font-mono font-bold text-sm hover:border-[#2d6a4f]/50 hover:bg-[#eef5f0] active:scale-95 transition-all shadow-sm"
+          >
+            SHOP
+          </button>
+          <WalletChecker />
+          <a
+            href="https://x.com/14kcoin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white border border-[#2d6a4f]/30 rounded-xl px-3 py-2.5 text-[#2d6a4f] hover:border-[#2d6a4f]/50 hover:bg-[#eef5f0] active:scale-95 transition-all shadow-sm"
+            title="Follow on X"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+        </div>
         {autoRate > 0 && (
           <span className="text-xs text-gray-400 font-mono">
             +{autoRate}/sec
