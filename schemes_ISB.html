@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Схемы — ИСБ мотострелковой бригады</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0f1117;
+    color: #e2e8f0;
+  }
+
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; gap: 4px; padding: 12px 24px;
+    background: rgba(15,17,23,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    overflow-x: auto;
+  }
+  .nav button {
+    flex-shrink: 0;
+    padding: 8px 18px; border: none; border-radius: 8px;
+    background: rgba(255,255,255,.06); color: #94a3b8;
+    font: 600 15px/1 'Inter', sans-serif; cursor: pointer;
+    transition: .2s;
+  }
+  .nav button:hover { background: rgba(255,255,255,.1); color: #e2e8f0; }
+  .nav button.active { background: #3b82f6; color: #fff; }
+
+  .slide {
+    display: none;
+    min-height: 100vh;
+    padding: 90px 40px 60px;
+  }
+  .slide.active { display: flex; flex-direction: column; align-items: center; }
+  .slide h1 {
+    font-size: 38px; font-weight: 800; margin-bottom: 10px;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-align: center;
+  }
+  .slide .subtitle {
+    font-size: 18px; color: #64748b; margin-bottom: 36px; text-align: center;
+  }
+
+  /* =========================================================
+     SLIDE 1 — STRUCTURE (redesigned)
+     ========================================================= */
+  .struct-root {
+    display: flex; flex-direction: column; align-items: center;
+    width: 100%; max-width: 1400px;
+  }
+  .root-card {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 22px 48px; border-radius: 16px;
+    background: linear-gradient(135deg, #1e3a5f, #1e40af);
+    border: 2px solid #3b82f6;
+    box-shadow: 0 0 40px rgba(59,130,246,.2);
+    text-align: center;
+  }
+  .root-card .rc-title { font-size: 30px; font-weight: 900; letter-spacing: .5px; }
+  .root-card .rc-full { font-size: 17px; color: #93c5fd; margin-top: 6px; }
+  .root-card .rc-badge {
+    display: inline-block; margin-top: 10px;
+    padding: 6px 20px; border-radius: 20px;
+    background: rgba(255,255,255,.1); font-size: 17px; font-weight: 700; color: #fff;
+  }
+
+  .struct-line-down { width: 2px; height: 32px; background: #3b82f6; }
+  .struct-h-line {
+    width: 88%; max-width: 1300px; height: 2px; background: #3b82f6;
+  }
+  .struct-branches {
+    display: flex; justify-content: space-between;
+    width: 88%; max-width: 1300px; gap: 14px;
+  }
+  .struct-branch {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+  }
+  .branch-line { width: 2px; height: 20px; background: #3b82f6; }
+
+  .branch-card {
+    width: 100%; border-radius: 14px; overflow: hidden;
+    border: 1.5px solid rgba(255,255,255,.1);
+    background: rgba(255,255,255,.02);
+    transition: .25s;
+  }
+  .branch-card:hover { border-color: rgba(255,255,255,.2); transform: translateY(-2px); }
+  .branch-head {
+    padding: 16px 16px; text-align: center;
+    font-weight: 700; font-size: 17px;
+  }
+  .branch-head.c-blue { background: linear-gradient(135deg, rgba(59,130,246,.15), rgba(99,102,241,.08)); color: #93c5fd; }
+  .branch-head.c-green { background: linear-gradient(135deg, rgba(16,185,129,.15), rgba(20,184,166,.08)); color: #6ee7b7; }
+  .branch-head.c-amber { background: linear-gradient(135deg, rgba(245,158,11,.15), rgba(251,146,60,.08)); color: #fcd34d; }
+  .branch-head.c-purple { background: linear-gradient(135deg, rgba(139,92,246,.15), rgba(167,139,250,.08)); color: #c4b5fd; }
+  .branch-head.c-rose { background: linear-gradient(135deg, rgba(244,63,94,.15), rgba(251,113,133,.08)); color: #fda4af; }
+
+  .branch-body { padding: 14px 16px; }
+  .branch-desc {
+    font-size: 14px; color: #64748b; line-height: 1.5;
+    padding: 0 0 10px; border-bottom: 1px solid rgba(255,255,255,.05);
+    margin-bottom: 10px;
+  }
+  .branch-unit {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 0; font-size: 15px; color: #cbd5e1;
+  }
+  .branch-unit .bu-dot {
+    flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%;
+    background: #475569;
+  }
+  .branch-unit .bu-count {
+    margin-left: auto; flex-shrink: 0;
+    font-size: 13px; font-weight: 700; color: #94a3b8;
+    background: rgba(255,255,255,.05); padding: 3px 10px; border-radius: 6px;
+  }
+  .branch-personnel {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,.05);
+    font-size: 15px; font-weight: 700; color: #64748b;
+  }
+  .branch-personnel span { color: #e2e8f0; }
+
+  /* =========================================================
+     SLIDE 2 — EQUIPMENT (with quantities)
+     ========================================================= */
+  .eq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px; width: 100%; max-width: 1300px;
+  }
+  .eq-card {
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 16px; padding: 24px; transition: .25s;
+  }
+  .eq-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
+  .eq-card .cat {
+    font-size: 14px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.5px; margin-bottom: 16px;
+  }
+  .cat.mine { color: #f87171; }
+  .cat.demine { color: #34d399; }
+  .cat.eng { color: #facc15; }
+  .cat.bridge { color: #60a5fa; }
+  .cat.weapon { color: #c084fc; }
+  .cat.auto { color: #fb923c; }
+
+  .eq-row {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+  }
+  .eq-row:last-child { border-bottom: none; }
+  .eq-qty {
+    flex-shrink: 0; width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 10px; font-size: 18px; font-weight: 900;
+  }
+  .eq-qty.q-green { background: rgba(16,185,129,.12); color: #34d399; border: 1px solid rgba(16,185,129,.25); }
+  .eq-qty.q-red { background: rgba(239,68,68,.12); color: #f87171; border: 1px solid rgba(239,68,68,.25); }
+  .eq-qty.q-yellow { background: rgba(250,204,21,.12); color: #fbbf24; border: 1px solid rgba(250,204,21,.25); }
+  .eq-qty.q-blue { background: rgba(59,130,246,.12); color: #60a5fa; border: 1px solid rgba(59,130,246,.25); }
+  .eq-qty.q-purple { background: rgba(139,92,246,.12); color: #a78bfa; border: 1px solid rgba(139,92,246,.25); }
+  .eq-qty.q-orange { background: rgba(251,146,60,.12); color: #fb923c; border: 1px solid rgba(251,146,60,.25); }
+  .eq-info .eq-name { font-weight: 700; font-size: 17px; color: #e2e8f0; }
+  .eq-info .eq-desc { font-size: 14px; color: #64748b; margin-top: 3px; line-height: 1.5; }
+
+  /* =========================================================
+     SLIDE 3 — CAPABILITIES (redesigned: stat cards)
+     ========================================================= */
+  .cap-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; width: 100%; max-width: 1100px;
+  }
+  .cap-card {
+    border-radius: 16px; padding: 28px 24px;
+    border: 1px solid rgba(255,255,255,.06);
+    background: rgba(255,255,255,.02);
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; transition: .25s;
+  }
+  .cap-card:hover { border-color: rgba(255,255,255,.15); }
+  .cap-icon {
+    width: 56px; height: 56px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 16px;
+  }
+  .cap-icon.ci1 { background: rgba(59,130,246,.12); border: 1.5px solid rgba(59,130,246,.25); }
+  .cap-icon.ci2 { background: rgba(16,185,129,.12); border: 1.5px solid rgba(16,185,129,.25); }
+  .cap-icon.ci3 { background: rgba(245,158,11,.12); border: 1.5px solid rgba(245,158,11,.25); }
+  .cap-icon.ci4 { background: rgba(239,68,68,.12); border: 1.5px solid rgba(239,68,68,.25); }
+  .cap-icon.ci5 { background: rgba(139,92,246,.12); border: 1.5px solid rgba(139,92,246,.25); }
+  .cap-icon.ci6 { background: rgba(6,182,212,.12); border: 1.5px solid rgba(6,182,212,.25); }
+
+  .cap-value { font-size: 44px; font-weight: 900; color: #fff; line-height: 1.1; }
+  .cap-unit { font-size: 16px; font-weight: 600; color: #94a3b8; margin-top: 4px; }
+  .cap-title { font-size: 15px; color: #64748b; margin-top: 12px; line-height: 1.4; }
+
+  .cap-highlight {
+    margin-top: 32px; width: 100%; max-width: 1100px;
+    padding: 28px 32px; border-radius: 16px;
+    background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(139,92,246,.06));
+    border: 1px solid rgba(59,130,246,.2);
+  }
+  .cap-highlight h3 { font-size: 20px; font-weight: 800; color: #93c5fd; margin-bottom: 16px; }
+  .cap-hl-stats {
+    display: flex; gap: 40px; flex-wrap: wrap;
+  }
+  .cap-hl-item { text-align: center; }
+  .cap-hl-item .val { font-size: 38px; font-weight: 900; color: #fff; }
+  .cap-hl-item .lbl { font-size: 15px; color: #64748b; margin-top: 4px; }
+
+  /* =========================================================
+     SLIDE 4 — COMBAT EMPLOYMENT (redesigned: tactical scheme)
+     ========================================================= */
+  .tac-wrap { width: 100%; max-width: 1200px; }
+
+  .tac-battlefield {
+    position: relative;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.06);
+    background: linear-gradient(180deg,
+      rgba(239,68,68,.04) 0%,
+      rgba(15,17,23,.5) 20%,
+      rgba(15,17,23,.8) 50%,
+      rgba(59,130,246,.04) 100%
+    );
+    padding: 0; overflow: hidden;
+  }
+
+  .tac-zone {
+    padding: 24px 32px;
+    border-bottom: 1px dashed rgba(255,255,255,.06);
+    position: relative;
+  }
+  .tac-zone:last-child { border-bottom: none; }
+
+  .tac-zone-label {
+    position: absolute; top: 12px; right: 16px;
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.5px; color: #475569;
+  }
+
+  .tac-element {
+    display: flex; gap: 18px; align-items: flex-start;
+    padding: 16px 20px; border-radius: 14px;
+    margin: 8px 0; transition: .2s;
+  }
+  .tac-element:hover { background: rgba(255,255,255,.03); }
+
+  .tac-marker {
+    flex-shrink: 0; width: 52px; height: 52px;
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 900; letter-spacing: .5px;
+  }
+  .tac-marker.tm-red {
+    background: rgba(239,68,68,.12); color: #fca5a5;
+    border: 2px solid rgba(239,68,68,.35);
+    box-shadow: 0 0 20px rgba(239,68,68,.1);
+  }
+  .tac-marker.tm-blue {
+    background: rgba(59,130,246,.12); color: #93c5fd;
+    border: 2px solid rgba(59,130,246,.35);
+    box-shadow: 0 0 20px rgba(59,130,246,.1);
+  }
+  .tac-marker.tm-amber {
+    background: rgba(245,158,11,.12); color: #fcd34d;
+    border: 2px solid rgba(245,158,11,.35);
+    box-shadow: 0 0 20px rgba(245,158,11,.1);
+  }
+  .tac-marker.tm-green {
+    background: rgba(16,185,129,.12); color: #6ee7b7;
+    border: 2px solid rgba(16,185,129,.35);
+    box-shadow: 0 0 20px rgba(16,185,129,.1);
+  }
+
+  .tac-content h3 {
+    font-size: 20px; font-weight: 800; margin-bottom: 4px;
+  }
+  .tac-content .tac-abbr {
+    font-size: 14px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .tac-abbr.ta-red { color: #f87171; }
+  .tac-abbr.ta-blue { color: #60a5fa; }
+  .tac-abbr.ta-amber { color: #fbbf24; }
+  .tac-abbr.ta-green { color: #34d399; }
+
+  .tac-content p { font-size: 16px; color: #94a3b8; line-height: 1.6; }
+
+  .tac-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  .tac-tag {
+    padding: 3px 10px; border-radius: 6px;
+    font-size: 13px; font-weight: 600;
+    background: rgba(255,255,255,.05); color: #94a3b8;
+    border: 1px solid rgba(255,255,255,.06);
+  }
+
+  .tac-divider {
+    display: flex; align-items: center; gap: 12px;
+    padding: 0 32px;
+  }
+  .tac-divider-line { flex: 1; height: 1px; background: rgba(255,255,255,.06); }
+  .tac-divider-text {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 2px; color: #475569;
+  }
+
+  /* enemy zone */
+  .tac-enemy-zone {
+    padding: 16px 32px;
+    background: rgba(239,68,68,.04);
+    border-bottom: 2px solid rgba(239,68,68,.15);
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .tac-enemy-zone span {
+    font-size: 15px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 2px; color: #dc2626;
+  }
+  .tac-enemy-line { width: 60px; height: 2px; background: rgba(239,68,68,.3); }
+
+  /* our zone */
+  .tac-our-zone {
+    padding: 12px 32px;
+    background: rgba(59,130,246,.03);
+    border-top: 2px solid rgba(59,130,246,.15);
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .tac-our-zone span {
+    font-size: 15px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 2px; color: #2563eb;
+  }
+  .tac-our-line { width: 60px; height: 2px; background: rgba(59,130,246,.3); }
+
+  /* interaction block */
+  .tac-interact {
+    margin-top: 24px; padding: 20px 28px; border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.06);
+    background: rgba(255,255,255,.02);
+  }
+  .tac-interact h4 { font-size: 18px; font-weight: 700; color: #93c5fd; margin-bottom: 12px; }
+  .tac-interact-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+  .tac-interact-item {
+    flex: 1; min-width: 180px;
+    padding: 12px 16px; border-radius: 10px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.06);
+  }
+  .tac-interact-item .tii-title { font-size: 16px; font-weight: 700; color: #e2e8f0; }
+  .tac-interact-item .tii-desc { font-size: 14px; color: #64748b; margin-top: 4px; line-height: 1.4; }
+
+
+  /* =========================================================
+     SLIDE 5 — TASKS (unchanged)
+     ========================================================= */
+  .tasks-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px; width: 100%; max-width: 1300px;
+  }
+  .task-col {
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.06);
+  }
+  .task-col-header {
+    padding: 20px 20px; font-weight: 700; font-size: 20px;
+    text-align: center;
+  }
+  .task-col-header.atk { background: linear-gradient(135deg, rgba(239,68,68,.15), rgba(249,115,22,.1)); color: #f87171; }
+  .task-col-header.def { background: linear-gradient(135deg, rgba(59,130,246,.15), rgba(99,102,241,.1)); color: #60a5fa; }
+  .task-col-header.march { background: linear-gradient(135deg, rgba(16,185,129,.15), rgba(20,184,166,.1)); color: #34d399; }
+
+  .task-col-body { padding: 16px 20px; }
+  .task-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    margin-bottom: 14px; font-size: 16px; line-height: 1.55; color: #cbd5e1;
+  }
+  .task-item:last-child { margin-bottom: 0; }
+  .task-dot {
+    flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%;
+    margin-top: 5px;
+  }
+  .task-dot.red { background: #f87171; }
+  .task-dot.blue { background: #60a5fa; }
+  .task-dot.green { background: #34d399; }
+
+  @media (max-width: 900px) {
+    .tasks-grid { grid-template-columns: 1fr; }
+    .eq-grid { grid-template-columns: 1fr; }
+    .cap-cards { grid-template-columns: 1fr 1fr; }
+    .struct-branches { flex-direction: column; align-items: center; width: 100%; }
+    .struct-h-line { display: none; }
+    .slide { padding: 80px 16px 40px; }
+  }
+  @media (max-width: 600px) {
+    .cap-cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav" id="nav">
+  <button class="active" onclick="go(0)">1. Структура</button>
+  <button onclick="go(1)">2. Техника</button>
+  <button onclick="go(2)">3. Возможности</button>
+  <button onclick="go(3)">4. Боевое применение</button>
+  <button onclick="go(4)">5. Задачи по видам боя</button>
+</div>
+
+<!-- ======================== SLIDE 1 — СТРУКТУРА ======================== -->
+<div class="slide active" id="s0">
+  <h1>Штатная структура ИСБ</h1>
+  <div class="subtitle">Инженерно-сапёрный батальон мотострелковой бригады</div>
+
+  <div class="struct-root">
+    <div class="root-card">
+      <div class="rc-title">ИСБ МСБр</div>
+      <div class="rc-full">Инженерно-сапёрный батальон мотострелковой бригады</div>
+      <div class="rc-badge">~250–300 чел.</div>
+    </div>
+
+    <div class="struct-line-down"></div>
+    <div class="struct-h-line"></div>
+
+    <div class="struct-branches">
+
+      <!-- Управление -->
+      <div class="struct-branch">
+        <div class="branch-line"></div>
+        <div class="branch-card">
+          <div class="branch-head c-rose">Управление батальона</div>
+          <div class="branch-body">
+            <div class="branch-desc">Руководство и управление всеми подразделениями батальона, планирование инженерного обеспечения</div>
+            <div class="branch-unit"><div class="bu-dot"></div> Командир батальона</div>
+            <div class="branch-unit"><div class="bu-dot"></div> Зам. по вооружению</div>
+            <div class="branch-unit"><div class="bu-dot"></div> Начальник штаба</div>
+            <div class="branch-unit"><div class="bu-dot"></div> Зам. по воспитательной работе</div>
+            <div class="branch-personnel">Личный состав: <span>~15 чел.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ИСР -->
+      <div class="struct-branch">
+        <div class="branch-line"></div>
+        <div class="branch-card">
+          <div class="branch-head c-blue">Инженерно-сапёрная рота</div>
+          <div class="branch-body">
+            <div class="branch-desc">Устройство и содержание минно-взрывных заграждений, управляемое минирование, инженерная разведка</div>
+            <div class="branch-unit"><div class="bu-dot"></div> 1-й инженерно-сапёрный взвод <span class="bu-count">3 отд.</span></div>
+            <div class="branch-unit"><div class="bu-dot"></div> 2-й инженерно-сапёрный взвод <span class="bu-count">3 отд.</span></div>
+            <div class="branch-unit"><div class="bu-dot"></div> Взвод управляемого минирования <span class="bu-count">3 отд.</span></div>
+            <div class="branch-personnel">Личный состав: <span>~60 чел.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Рота разминирования -->
+      <div class="struct-branch">
+        <div class="branch-line"></div>
+        <div class="branch-card">
+          <div class="branch-head c-green">Инженерная рота разминирования</div>
+          <div class="branch-body">
+            <div class="branch-desc">Проделывание проходов в минных полях, сплошное разминирование местности, дорог и объектов</div>
+            <div class="branch-unit"><div class="bu-dot"></div> 1-й взвод разминирования <span class="bu-count">3 отд.</span></div>
+            <div class="branch-unit"><div class="bu-dot"></div> 2-й взвод разминирования <span class="bu-count">3 отд.</span></div>
+            <div class="branch-unit"><div class="bu-dot"></div> 3-й взвод разминирования <span class="bu-count">3 отд.</span></div>
+            <div class="branch-personnel">Личный состав: <span>~65 чел.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ИДР -->
+      <div class="struct-branch">
+        <div class="branch-line"></div>
+        <div class="branch-card">
+          <div class="branch-head c-amber">Инженерно-дорожная рота</div>
+          <div class="branch-body">
+            <div class="branch-desc">Подготовка путей движения, устройство переправ и мостовых переходов, фортификационное оборудование</div>
+            <div class="branch-unit"><div class="bu-dot"></div> 1-й инженерно-дорожный взвод <span class="bu-count">3 отд.</span></div>
+            <div class="branch-unit"><div class="bu-dot"></div> 2-й инженерно-дорожный взвод <span class="bu-count">3 отд.</span></div>
+            <div class="branch-unit"><div class="bu-dot"></div> Инж.-мостостроительный взвод <span class="bu-count">2 отд.</span></div>
+            <div class="branch-personnel">Личный состав: <span>~65 чел.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Обеспечение -->
+      <div class="struct-branch">
+        <div class="branch-line"></div>
+        <div class="branch-card">
+          <div class="branch-head c-purple">Подразделения обеспечения</div>
+          <div class="branch-body">
+            <div class="branch-desc">Связь, снабжение, ремонт техники, медицинское обеспечение батальона</div>
+            <div class="branch-unit"><div class="bu-dot"></div> Взвод связи</div>
+            <div class="branch-unit"><div class="bu-dot"></div> Взвод обеспечения</div>
+            <div class="branch-unit"><div class="bu-dot"></div> Ремонтный взвод</div>
+            <div class="branch-unit"><div class="bu-dot"></div> Медицинский пункт</div>
+            <div class="branch-personnel">Личный состав: <span>~45 чел.</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 2 — ТЕХНИКА ======================== -->
+<div class="slide" id="s1">
+  <h1>Вооружение и техника ИСБ</h1>
+  <div class="subtitle">Основные образцы с количеством единиц</div>
+
+  <div class="eq-grid">
+
+    <div class="eq-card">
+      <div class="cat demine">Средства разминирования</div>
+      <div class="eq-row">
+        <div class="eq-qty q-green">2</div>
+        <div class="eq-info">
+          <div class="eq-name">УР-77 «Метеорит»</div>
+          <div class="eq-desc">Реактивная установка разминирования. Проход 80–90 м &times; 6 м за 3–5 мин.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-green">2</div>
+        <div class="eq-info">
+          <div class="eq-name">ИМР-2</div>
+          <div class="eq-desc">Инженерная машина разграждения на базе Т-72. Бульдозер + манипулятор.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-green">27</div>
+        <div class="eq-info">
+          <div class="eq-name">Комплекты сапёра</div>
+          <div class="eq-desc">Миноискатели ИМП-2, щупы, кошки, комплекты разминирования КР-И.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eq-card">
+      <div class="cat mine">Средства минирования</div>
+      <div class="eq-row">
+        <div class="eq-qty q-red">4</div>
+        <div class="eq-info">
+          <div class="eq-name">ПМЗ-4</div>
+          <div class="eq-desc">Прицепной минный заградитель. Установка ПТ мин с темпом до 4 км/ч.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-red">750</div>
+        <div class="eq-info">
+          <div class="eq-name">Мины ТМ-62М</div>
+          <div class="eq-desc">Противотанковые мины нажимного действия, масса ВВ 7,5 кг.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-red">120</div>
+        <div class="eq-info">
+          <div class="eq-name">МОН-50 / ОЗМ-72</div>
+          <div class="eq-desc">Противопехотные мины направленного и кругового поражения.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eq-card">
+      <div class="cat eng">Инженерная техника</div>
+      <div class="eq-row">
+        <div class="eq-qty q-yellow">2</div>
+        <div class="eq-info">
+          <div class="eq-name">БАТ-2</div>
+          <div class="eq-desc">Путепрокладчик. Прокладка колонных путей 6–10 км/ч.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-yellow">3</div>
+        <div class="eq-info">
+          <div class="eq-name">ПЗМ-2</div>
+          <div class="eq-desc">Полковая землеройная машина. Отрывка траншей.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-yellow">1</div>
+        <div class="eq-info">
+          <div class="eq-name">МДК-3</div>
+          <div class="eq-desc">Котлованная машина для укрытий техники.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-yellow">1</div>
+        <div class="eq-info">
+          <div class="eq-name">ЭОВ-4421</div>
+          <div class="eq-desc">Войсковой экскаватор для земляных работ.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eq-card">
+      <div class="cat bridge">Переправочные средства</div>
+      <div class="eq-row">
+        <div class="eq-qty q-blue">2</div>
+        <div class="eq-info">
+          <div class="eq-name">МТУ-20</div>
+          <div class="eq-desc">Танковый мостоукладчик. Мост до 18 м, наводка ~5 мин.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-blue">1</div>
+        <div class="eq-info">
+          <div class="eq-name">ТММ-3 (комплект)</div>
+          <div class="eq-desc">Тяжёлый механизированный мост. 4 автомобиля на комплект.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eq-card">
+      <div class="cat weapon">Стрелковое вооружение</div>
+      <div class="eq-row">
+        <div class="eq-qty q-purple">~220</div>
+        <div class="eq-info">
+          <div class="eq-name">АК-74М</div>
+          <div class="eq-desc">Основной автомат личного состава батальона.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-purple">9</div>
+        <div class="eq-info">
+          <div class="eq-name">РПГ-7В</div>
+          <div class="eq-desc">Ручной противотанковый гранатомёт.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-purple">6</div>
+        <div class="eq-info">
+          <div class="eq-name">ПКМ / ПКП</div>
+          <div class="eq-desc">Пулемёт Калашникова.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-purple">~30</div>
+        <div class="eq-info">
+          <div class="eq-name">ПМ / ПЯ</div>
+          <div class="eq-desc">Пистолеты офицерского и сержантского состава.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eq-card">
+      <div class="cat auto">Автомобильная техника</div>
+      <div class="eq-row">
+        <div class="eq-qty q-orange">~20</div>
+        <div class="eq-info">
+          <div class="eq-name">Урал-4320</div>
+          <div class="eq-desc">Основной грузовой автомобиль повышенной проходимости.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-orange">~8</div>
+        <div class="eq-info">
+          <div class="eq-name">КамАЗ-5350</div>
+          <div class="eq-desc">Транспорт для л/с и инженерного имущества.</div>
+        </div>
+      </div>
+      <div class="eq-row">
+        <div class="eq-qty q-orange">2</div>
+        <div class="eq-info">
+          <div class="eq-name">УАЗ-3151</div>
+          <div class="eq-desc">Командирские машины.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== SLIDE 3 — ВОЗМОЖНОСТИ ======================== -->
+<div class="slide" id="s2">
+  <h1>Боевые возможности ИСБ</h1>
+  <div class="subtitle">Объём работ силами батальона за 10–12 часов</div>
+
+  <div class="cap-cards">
+    <div class="cap-card">
+      <div class="cap-icon ci1"><svg width="28" height="28" fill="none" stroke="#60a5fa" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div class="cap-value">3–5 км</div>
+      <div class="cap-unit">по фронту</div>
+      <div class="cap-title">Установка противотанковых минных полей</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon ci2"><svg width="28" height="28" fill="none" stroke="#34d399" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div class="cap-value">1,5–2 км</div>
+      <div class="cap-unit">по фронту</div>
+      <div class="cap-title">Установка противопехотных минных полей</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon ci3"><svg width="28" height="28" fill="none" stroke="#fbbf24" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="cap-value">6–8</div>
+      <div class="cap-unit">проходов</div>
+      <div class="cap-title">Проделывание проходов в минных полях противника</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon ci4"><svg width="28" height="28" fill="none" stroke="#f87171" stroke-width="2.5" viewBox="0 0 24 24"><path d="M3 17h18M3 12h18M3 7h18"/></svg></div>
+      <div class="cap-value">10–15 км</div>
+      <div class="cap-unit">протяжённость</div>
+      <div class="cap-title">Отрывка траншей и ходов сообщения</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon ci5"><svg width="28" height="28" fill="none" stroke="#a78bfa" stroke-width="2.5" viewBox="0 0 24 24"><path d="M4 20L20 4M4 4h16v16"/></svg></div>
+      <div class="cap-value">15–20 км</div>
+      <div class="cap-unit">протяжённость</div>
+      <div class="cap-title">Подготовка колонных путей</div>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon ci6"><svg width="28" height="28" fill="none" stroke="#22d3ee" stroke-width="2.5" viewBox="0 0 24 24"><path d="M3 18h18M6 18V8h12v10"/></svg></div>
+      <div class="cap-value">2–3</div>
+      <div class="cap-unit">перехода</div>
+      <div class="cap-title">Мостовые переходы через препятствия до 18 м</div>
+    </div>
+  </div>
+
+  <div class="cap-highlight">
+    <h3>УР-77 «Метеорит» — один цикл разминирования</h3>
+    <div class="cap-hl-stats">
+      <div class="cap-hl-item">
+        <div class="val">80–90 м</div>
+        <div class="lbl">длина прохода</div>
+      </div>
+      <div class="cap-hl-item">
+        <div class="val">6 м</div>
+        <div class="lbl">ширина прохода</div>
+      </div>
+      <div class="cap-hl-item">
+        <div class="val">3–5 мин</div>
+        <div class="lbl">время полного цикла</div>
+      </div>
+      <div class="cap-hl-item">
+        <div class="val">725 кг</div>
+        <div class="lbl">масса ВВ в заряде</div>
+      </div>
+      <div class="cap-hl-item">
+        <div class="val">500 м</div>
+        <div class="lbl">макс. дальность</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 4 — БОЕВОЕ ПРИМЕНЕНИЕ ======================== -->
+<div class="slide" id="s3">
+  <h1>Боевое применение ИСБ</h1>
+  <div class="subtitle">Распределение сил по элементам боевого порядка бригады</div>
+
+  <div class="tac-wrap">
+    <div class="tac-battlefield">
+
+      <!-- Противник -->
+      <div class="tac-enemy-zone">
+        <div class="tac-enemy-line"></div>
+        <span>Передний край обороны противника</span>
+        <div class="tac-enemy-line"></div>
+      </div>
+
+      <!-- Зона 1: перед передним краем -->
+      <div class="tac-zone">
+        <div class="tac-zone-label">Перед передним краем</div>
+        <div class="tac-element">
+          <div class="tac-marker tm-red">ГР</div>
+          <div class="tac-content">
+            <h3>Группа разграждения</h3>
+            <div class="tac-abbr ta-red">В боевых порядках 1-го эшелона</div>
+            <p>Проделывает проходы в минных полях и заграждениях противника непосредственно перед атакующими подразделениями. Действует в составе мотострелковых и танковых батальонов первого эшелона.</p>
+            <div class="tac-tags">
+              <div class="tac-tag">УР-77</div>
+              <div class="tac-tag">ИМР-2</div>
+              <div class="tac-tag">Сапёрные отделения</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tac-divider">
+        <div class="tac-divider-line"></div>
+        <div class="tac-divider-text">Межпозиционное пространство</div>
+        <div class="tac-divider-line"></div>
+      </div>
+
+      <!-- Зона 2: маршруты -->
+      <div class="tac-zone">
+        <div class="tac-zone-label">Маршруты выдвижения</div>
+        <div class="tac-element">
+          <div class="tac-marker tm-blue">ООД</div>
+          <div class="tac-content">
+            <h3>Отряд обеспечения движения</h3>
+            <div class="tac-abbr ta-blue">Впереди главных сил на маршрутах</div>
+            <p>Разведка и подготовка маршрутов, устранение разрушений, оборудование переправ. Обеспечивает заданный темп продвижения колонн бригады.</p>
+            <div class="tac-tags">
+              <div class="tac-tag">БАТ-2</div>
+              <div class="tac-tag">МТУ-20</div>
+              <div class="tac-tag">Дорожные взводы</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Зона 3: фланги -->
+      <div class="tac-zone">
+        <div class="tac-zone-label">Фланги и стыки</div>
+        <div class="tac-element">
+          <div class="tac-marker tm-amber">ПОЗ</div>
+          <div class="tac-content">
+            <h3>Подвижный отряд заграждений</h3>
+            <div class="tac-abbr ta-amber">На угрожаемых направлениях</div>
+            <p>Устанавливает минно-взрывные заграждения на путях движения контратакующего противника. Действует по указанию командира бригады, перекрывая наиболее опасные направления.</p>
+            <div class="tac-tags">
+              <div class="tac-tag">ПМЗ-4</div>
+              <div class="tac-tag">Мины ТМ-62М</div>
+              <div class="tac-tag">Сапёрные расчёты</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tac-divider">
+        <div class="tac-divider-line"></div>
+        <div class="tac-divider-text">Тыловой район</div>
+        <div class="tac-divider-line"></div>
+      </div>
+
+      <!-- Зона 4: резерв -->
+      <div class="tac-zone">
+        <div class="tac-zone-label">В распоряжении комбрига</div>
+        <div class="tac-element">
+          <div class="tac-marker tm-green">ИР</div>
+          <div class="tac-content">
+            <h3>Инженерный резерв</h3>
+            <div class="tac-abbr ta-green">В готовности к выполнению внезапных задач</div>
+            <p>Часть сил и средств ИСБ для решения внезапно возникающих задач. Используется для усиления на решающем направлении по решению командира бригады.</p>
+            <div class="tac-tags">
+              <div class="tac-tag">Сапёрные взводы</div>
+              <div class="tac-tag">Резервная техника</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Свои -->
+      <div class="tac-our-zone">
+        <div class="tac-our-line"></div>
+        <span>Исходный район бригады</span>
+        <div class="tac-our-line"></div>
+      </div>
+
+    </div>
+
+    <!-- Взаимодействие -->
+    <div class="tac-interact">
+      <h4>Взаимодействие ИСБ с подразделениями бригады</h4>
+      <div class="tac-interact-grid">
+        <div class="tac-interact-item">
+          <div class="tii-title">МСБ / ТБ</div>
+          <div class="tii-desc">Группы разграждения в боевых порядках при наступлении, инженерное оборудование позиций в обороне</div>
+        </div>
+        <div class="tac-interact-item">
+          <div class="tii-title">Артиллерия</div>
+          <div class="tii-desc">Огневое прикрытие работ по разминированию и устройству проходов</div>
+        </div>
+        <div class="tac-interact-item">
+          <div class="tii-title">Подразделения РХБЗ</div>
+          <div class="tii-desc">Совместное преодоление заражённых участков и зон разрушений</div>
+        </div>
+        <div class="tac-interact-item">
+          <div class="tii-title">Подразделения связи</div>
+          <div class="tii-desc">Обеспечение устойчивого управления инженерными подразделениями</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== SLIDE 5 — ЗАДАЧИ (без изменений) ======================== -->
+<div class="slide" id="s4">
+  <h1>Задачи ИСБ по видам боя</h1>
+  <div class="subtitle">Наступление — Оборона — Марш</div>
+
+  <div class="tasks-grid">
+    <div class="task-col">
+      <div class="task-col-header atk">Наступление</div>
+      <div class="task-col-body">
+        <div class="task-item"><div class="task-dot red"></div><div>Проделывание проходов в минных полях и заграждениях противника</div></div>
+        <div class="task-item"><div class="task-dot red"></div><div>Сопровождение подразделений группами разграждения</div></div>
+        <div class="task-item"><div class="task-dot red"></div><div>Обеспечение преодоления водных преград, устройство переправ</div></div>
+        <div class="task-item"><div class="task-dot red"></div><div>Подготовка и содержание путей выдвижения и маневра</div></div>
+        <div class="task-item"><div class="task-dot red"></div><div>Разминирование захваченных объектов</div></div>
+        <div class="task-item"><div class="task-dot red"></div><div>Закрепление занятых рубежей заграждениями</div></div>
+      </div>
+    </div>
+
+    <div class="task-col">
+      <div class="task-col-header def">Оборона</div>
+      <div class="task-col-body">
+        <div class="task-item"><div class="task-dot blue"></div><div>Фортификационное оборудование опорных пунктов и позиций</div></div>
+        <div class="task-item"><div class="task-dot blue"></div><div>Устройство минно-взрывных заграждений на направлениях наступления противника</div></div>
+        <div class="task-item"><div class="task-dot blue"></div><div>Подготовка путей маневра и рокадных дорог</div></div>
+        <div class="task-item"><div class="task-dot blue"></div><div>Маскировка позиций, устройство ложных объектов</div></div>
+        <div class="task-item"><div class="task-dot blue"></div><div>Подготовка рубежей минирования для прикрытия отхода</div></div>
+        <div class="task-item"><div class="task-dot blue"></div><div>Оборудование пунктов водоснабжения</div></div>
+      </div>
+    </div>
+
+    <div class="task-col">
+      <div class="task-col-header march">Марш</div>
+      <div class="task-col-body">
+        <div class="task-item"><div class="task-dot green"></div><div>Инженерная разведка маршрутов движения</div></div>
+        <div class="task-item"><div class="task-dot green"></div><div>Подготовка и содержание маршрутов</div></div>
+        <div class="task-item"><div class="task-dot green"></div><div>Устройство переходов через препятствия и водные преграды</div></div>
+        <div class="task-item"><div class="task-dot green"></div><div>Разминирование участков дорог</div></div>
+        <div class="task-item"><div class="task-dot green"></div><div>Оборудование районов привалов и сосредоточения</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const btns = document.querySelectorAll('.nav button');
+  function go(i) {
+    slides.forEach(s => s.classList.remove('active'));
+    btns.forEach(b => b.classList.remove('active'));
+    slides[i].classList.add('active');
+    btns[i].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
