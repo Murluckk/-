@@ -27,7 +27,7 @@
     flex-shrink: 0;
     padding: 8px 18px; border: none; border-radius: 8px;
     background: rgba(255,255,255,.06); color: #94a3b8;
-    font: 600 13px/1 'Inter', sans-serif; cursor: pointer;
+    font: 600 15px/1 'Inter', sans-serif; cursor: pointer;
     transition: .2s;
   }
   .nav button:hover { background: rgba(255,255,255,.1); color: #e2e8f0; }
@@ -40,13 +40,13 @@
   }
   .slide.active { display: flex; flex-direction: column; align-items: center; }
   .slide h1 {
-    font-size: 28px; font-weight: 800; margin-bottom: 8px;
+    font-size: 38px; font-weight: 800; margin-bottom: 10px;
     background: linear-gradient(135deg, #60a5fa, #a78bfa);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     text-align: center;
   }
   .slide .subtitle {
-    font-size: 14px; color: #64748b; margin-bottom: 36px; text-align: center;
+    font-size: 18px; color: #64748b; margin-bottom: 36px; text-align: center;
   }
 
   /* =========================================================
@@ -54,7 +54,7 @@
      ========================================================= */
   .struct-root {
     display: flex; flex-direction: column; align-items: center;
-    width: 100%; max-width: 1200px;
+    width: 100%; max-width: 1400px;
   }
   .root-card {
     display: flex; flex-direction: column; align-items: center;
@@ -64,21 +64,21 @@
     box-shadow: 0 0 40px rgba(59,130,246,.2);
     text-align: center;
   }
-  .root-card .rc-title { font-size: 20px; font-weight: 900; letter-spacing: .5px; }
-  .root-card .rc-full { font-size: 12px; color: #93c5fd; margin-top: 4px; }
+  .root-card .rc-title { font-size: 30px; font-weight: 900; letter-spacing: .5px; }
+  .root-card .rc-full { font-size: 17px; color: #93c5fd; margin-top: 6px; }
   .root-card .rc-badge {
-    display: inline-block; margin-top: 8px;
-    padding: 4px 16px; border-radius: 20px;
-    background: rgba(255,255,255,.1); font-size: 13px; font-weight: 700; color: #fff;
+    display: inline-block; margin-top: 10px;
+    padding: 6px 20px; border-radius: 20px;
+    background: rgba(255,255,255,.1); font-size: 17px; font-weight: 700; color: #fff;
   }
 
   .struct-line-down { width: 2px; height: 32px; background: #3b82f6; }
   .struct-h-line {
-    width: 82%; max-width: 960px; height: 2px; background: #3b82f6;
+    width: 88%; max-width: 1300px; height: 2px; background: #3b82f6;
   }
   .struct-branches {
     display: flex; justify-content: space-between;
-    width: 82%; max-width: 960px; gap: 12px;
+    width: 88%; max-width: 1300px; gap: 14px;
   }
   .struct-branch {
     flex: 1; display: flex; flex-direction: column; align-items: center;
@@ -93,8 +93,8 @@
   }
   .branch-card:hover { border-color: rgba(255,255,255,.2); transform: translateY(-2px); }
   .branch-head {
-    padding: 14px 16px; text-align: center;
-    font-weight: 700; font-size: 13px;
+    padding: 16px 16px; text-align: center;
+    font-weight: 700; font-size: 17px;
   }
   .branch-head.c-blue { background: linear-gradient(135deg, rgba(59,130,246,.15), rgba(99,102,241,.08)); color: #93c5fd; }
   .branch-head.c-green { background: linear-gradient(135deg, rgba(16,185,129,.15), rgba(20,184,166,.08)); color: #6ee7b7; }
@@ -102,30 +102,30 @@
   .branch-head.c-purple { background: linear-gradient(135deg, rgba(139,92,246,.15), rgba(167,139,250,.08)); color: #c4b5fd; }
   .branch-head.c-rose { background: linear-gradient(135deg, rgba(244,63,94,.15), rgba(251,113,133,.08)); color: #fda4af; }
 
-  .branch-body { padding: 12px 14px; }
+  .branch-body { padding: 14px 16px; }
   .branch-desc {
-    font-size: 11px; color: #64748b; line-height: 1.5;
+    font-size: 14px; color: #64748b; line-height: 1.5;
     padding: 0 0 10px; border-bottom: 1px solid rgba(255,255,255,.05);
     margin-bottom: 10px;
   }
   .branch-unit {
     display: flex; align-items: center; gap: 8px;
-    padding: 6px 0; font-size: 12px; color: #cbd5e1;
+    padding: 7px 0; font-size: 15px; color: #cbd5e1;
   }
   .branch-unit .bu-dot {
-    flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;
+    flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%;
     background: #475569;
   }
   .branch-unit .bu-count {
     margin-left: auto; flex-shrink: 0;
-    font-size: 11px; font-weight: 700; color: #94a3b8;
-    background: rgba(255,255,255,.05); padding: 2px 8px; border-radius: 6px;
+    font-size: 13px; font-weight: 700; color: #94a3b8;
+    background: rgba(255,255,255,.05); padding: 3px 10px; border-radius: 6px;
   }
   .branch-personnel {
     display: flex; align-items: center; justify-content: center; gap: 6px;
     margin-top: 10px; padding-top: 10px;
     border-top: 1px solid rgba(255,255,255,.05);
-    font-size: 11px; font-weight: 700; color: #64748b;
+    font-size: 15px; font-weight: 700; color: #64748b;
   }
   .branch-personnel span { color: #e2e8f0; }
 
@@ -135,7 +135,7 @@
   .eq-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px; width: 100%; max-width: 1100px;
+    gap: 20px; width: 100%; max-width: 1300px;
   }
   .eq-card {
     background: rgba(255,255,255,.03);
@@ -144,7 +144,7 @@
   }
   .eq-card:hover { border-color: #3b82f6; transform: translateY(-2px); }
   .eq-card .cat {
-    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    font-size: 14px; font-weight: 700; text-transform: uppercase;
     letter-spacing: 1.5px; margin-bottom: 16px;
   }
   .cat.mine { color: #f87171; }
@@ -163,7 +163,7 @@
   .eq-qty {
     flex-shrink: 0; width: 44px; height: 44px;
     display: flex; align-items: center; justify-content: center;
-    border-radius: 10px; font-size: 16px; font-weight: 900;
+    border-radius: 10px; font-size: 18px; font-weight: 900;
   }
   .eq-qty.q-green { background: rgba(16,185,129,.12); color: #34d399; border: 1px solid rgba(16,185,129,.25); }
   .eq-qty.q-red { background: rgba(239,68,68,.12); color: #f87171; border: 1px solid rgba(239,68,68,.25); }
@@ -171,15 +171,15 @@
   .eq-qty.q-blue { background: rgba(59,130,246,.12); color: #60a5fa; border: 1px solid rgba(59,130,246,.25); }
   .eq-qty.q-purple { background: rgba(139,92,246,.12); color: #a78bfa; border: 1px solid rgba(139,92,246,.25); }
   .eq-qty.q-orange { background: rgba(251,146,60,.12); color: #fb923c; border: 1px solid rgba(251,146,60,.25); }
-  .eq-info .eq-name { font-weight: 700; font-size: 14px; color: #e2e8f0; }
-  .eq-info .eq-desc { font-size: 12px; color: #64748b; margin-top: 3px; line-height: 1.5; }
+  .eq-info .eq-name { font-weight: 700; font-size: 17px; color: #e2e8f0; }
+  .eq-info .eq-desc { font-size: 14px; color: #64748b; margin-top: 3px; line-height: 1.5; }
 
   /* =========================================================
      SLIDE 3 — CAPABILITIES (redesigned: stat cards)
      ========================================================= */
   .cap-cards {
     display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 20px; width: 100%; max-width: 960px;
+    gap: 24px; width: 100%; max-width: 1100px;
   }
   .cap-card {
     border-radius: 16px; padding: 28px 24px;
@@ -201,28 +201,28 @@
   .cap-icon.ci5 { background: rgba(139,92,246,.12); border: 1.5px solid rgba(139,92,246,.25); }
   .cap-icon.ci6 { background: rgba(6,182,212,.12); border: 1.5px solid rgba(6,182,212,.25); }
 
-  .cap-value { font-size: 36px; font-weight: 900; color: #fff; line-height: 1.1; }
-  .cap-unit { font-size: 13px; font-weight: 600; color: #94a3b8; margin-top: 4px; }
-  .cap-title { font-size: 13px; color: #64748b; margin-top: 12px; line-height: 1.4; }
+  .cap-value { font-size: 44px; font-weight: 900; color: #fff; line-height: 1.1; }
+  .cap-unit { font-size: 16px; font-weight: 600; color: #94a3b8; margin-top: 4px; }
+  .cap-title { font-size: 15px; color: #64748b; margin-top: 12px; line-height: 1.4; }
 
   .cap-highlight {
-    margin-top: 32px; width: 100%; max-width: 960px;
+    margin-top: 32px; width: 100%; max-width: 1100px;
     padding: 28px 32px; border-radius: 16px;
     background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(139,92,246,.06));
     border: 1px solid rgba(59,130,246,.2);
   }
-  .cap-highlight h3 { font-size: 16px; font-weight: 800; color: #93c5fd; margin-bottom: 16px; }
+  .cap-highlight h3 { font-size: 20px; font-weight: 800; color: #93c5fd; margin-bottom: 16px; }
   .cap-hl-stats {
     display: flex; gap: 40px; flex-wrap: wrap;
   }
   .cap-hl-item { text-align: center; }
-  .cap-hl-item .val { font-size: 32px; font-weight: 900; color: #fff; }
-  .cap-hl-item .lbl { font-size: 12px; color: #64748b; margin-top: 4px; }
+  .cap-hl-item .val { font-size: 38px; font-weight: 900; color: #fff; }
+  .cap-hl-item .lbl { font-size: 15px; color: #64748b; margin-top: 4px; }
 
   /* =========================================================
      SLIDE 4 — COMBAT EMPLOYMENT (redesigned: tactical scheme)
      ========================================================= */
-  .tac-wrap { width: 100%; max-width: 1000px; }
+  .tac-wrap { width: 100%; max-width: 1200px; }
 
   .tac-battlefield {
     position: relative;
@@ -246,7 +246,7 @@
 
   .tac-zone-label {
     position: absolute; top: 12px; right: 16px;
-    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
     letter-spacing: 1.5px; color: #475569;
   }
 
@@ -260,7 +260,7 @@
   .tac-marker {
     flex-shrink: 0; width: 52px; height: 52px;
     border-radius: 12px; display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 900; letter-spacing: .5px;
+    font-size: 18px; font-weight: 900; letter-spacing: .5px;
   }
   .tac-marker.tm-red {
     background: rgba(239,68,68,.12); color: #fca5a5;
@@ -284,10 +284,10 @@
   }
 
   .tac-content h3 {
-    font-size: 16px; font-weight: 800; margin-bottom: 2px;
+    font-size: 20px; font-weight: 800; margin-bottom: 4px;
   }
   .tac-content .tac-abbr {
-    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    font-size: 14px; font-weight: 700; letter-spacing: 1px;
     text-transform: uppercase; margin-bottom: 8px;
   }
   .tac-abbr.ta-red { color: #f87171; }
@@ -295,12 +295,12 @@
   .tac-abbr.ta-amber { color: #fbbf24; }
   .tac-abbr.ta-green { color: #34d399; }
 
-  .tac-content p { font-size: 13px; color: #94a3b8; line-height: 1.6; }
+  .tac-content p { font-size: 16px; color: #94a3b8; line-height: 1.6; }
 
   .tac-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
   .tac-tag {
     padding: 3px 10px; border-radius: 6px;
-    font-size: 11px; font-weight: 600;
+    font-size: 13px; font-weight: 600;
     background: rgba(255,255,255,.05); color: #94a3b8;
     border: 1px solid rgba(255,255,255,.06);
   }
@@ -311,7 +311,7 @@
   }
   .tac-divider-line { flex: 1; height: 1px; background: rgba(255,255,255,.06); }
   .tac-divider-text {
-    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
     letter-spacing: 2px; color: #475569;
   }
 
@@ -323,7 +323,7 @@
     display: flex; align-items: center; justify-content: center; gap: 12px;
   }
   .tac-enemy-zone span {
-    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    font-size: 15px; font-weight: 700; text-transform: uppercase;
     letter-spacing: 2px; color: #dc2626;
   }
   .tac-enemy-line { width: 60px; height: 2px; background: rgba(239,68,68,.3); }
@@ -336,7 +336,7 @@
     display: flex; align-items: center; justify-content: center; gap: 12px;
   }
   .tac-our-zone span {
-    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    font-size: 15px; font-weight: 700; text-transform: uppercase;
     letter-spacing: 2px; color: #2563eb;
   }
   .tac-our-line { width: 60px; height: 2px; background: rgba(59,130,246,.3); }
@@ -347,7 +347,7 @@
     border: 1px solid rgba(255,255,255,.06);
     background: rgba(255,255,255,.02);
   }
-  .tac-interact h4 { font-size: 14px; font-weight: 700; color: #93c5fd; margin-bottom: 12px; }
+  .tac-interact h4 { font-size: 18px; font-weight: 700; color: #93c5fd; margin-bottom: 12px; }
   .tac-interact-grid { display: flex; gap: 12px; flex-wrap: wrap; }
   .tac-interact-item {
     flex: 1; min-width: 180px;
@@ -355,8 +355,8 @@
     background: rgba(255,255,255,.03);
     border: 1px solid rgba(255,255,255,.06);
   }
-  .tac-interact-item .tii-title { font-size: 12px; font-weight: 700; color: #e2e8f0; }
-  .tac-interact-item .tii-desc { font-size: 11px; color: #64748b; margin-top: 4px; line-height: 1.4; }
+  .tac-interact-item .tii-title { font-size: 16px; font-weight: 700; color: #e2e8f0; }
+  .tac-interact-item .tii-desc { font-size: 14px; color: #64748b; margin-top: 4px; line-height: 1.4; }
 
 
   /* =========================================================
@@ -364,14 +364,14 @@
      ========================================================= */
   .tasks-grid {
     display: grid; grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px; width: 100%; max-width: 1100px;
+    gap: 20px; width: 100%; max-width: 1300px;
   }
   .task-col {
     border-radius: 16px; overflow: hidden;
     border: 1px solid rgba(255,255,255,.06);
   }
   .task-col-header {
-    padding: 18px 20px; font-weight: 700; font-size: 16px;
+    padding: 20px 20px; font-weight: 700; font-size: 20px;
     text-align: center;
   }
   .task-col-header.atk { background: linear-gradient(135deg, rgba(239,68,68,.15), rgba(249,115,22,.1)); color: #f87171; }
@@ -381,7 +381,7 @@
   .task-col-body { padding: 16px 20px; }
   .task-item {
     display: flex; align-items: flex-start; gap: 10px;
-    margin-bottom: 14px; font-size: 13px; line-height: 1.55; color: #cbd5e1;
+    margin-bottom: 14px; font-size: 16px; line-height: 1.55; color: #cbd5e1;
   }
   .task-item:last-child { margin-bottom: 0; }
   .task-dot {
