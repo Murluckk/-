@@ -1,0 +1,20 @@
+[package]
+name = "keccak-of-address-miner"
+version = "0.1.0"
+edition = "2021"
+description = "Multi-threaded CPU miner searching for Ethereum EOA keys whose keccak256(address) starts with a target byte prefix (e.g. 0x00000000)."
+
+[dependencies]
+secp256k1 = { version = "0.29", features = ["rand", "recovery", "global-context"] }
+tiny-keccak = { version = "2.0", features = ["keccak"] }
+rand = "0.8"
+rayon = "1.10"
+hex = "0.4"
+clap = { version = "=4.5.20", features = ["derive"] }
+ctrlc = "3.4"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
