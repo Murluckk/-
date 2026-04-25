@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 820" font-family="Arial, sans-serif" font-size="12">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="black"/>
+    </marker>
+    <style>
+      .app { fill: none; stroke: black; stroke-width: 1; stroke-dasharray: 6,4; }
+      .op  { fill: white; stroke: black; stroke-width: 1.6; }
+      .ln  { fill: none; stroke: black; stroke-width: 1.4; }
+      .lbl { font-size: 11px; }
+      .num { font-size: 14px; font-weight: bold; }
+      .cap { font-size: 12px; font-style: italic; }
+      .stream { font-size: 11px; font-weight: bold; }
+      .title { font-size: 18px; font-weight: bold; }
+    </style>
+  </defs>
+
+  <text x="20" y="28" class="title">Операторная схема газификации ТГИ в плотном слое</text>
+  <text x="20" y="48" class="cap">Каждый аппарат — пунктирный прямоугольник с одним или несколькими типовыми технологическими операторами</text>
+
+  <!-- =============== 1. Газогенератор =============== -->
+  <rect class="app" x="55" y="290" width="320" height="170"/>
+  <text x="62" y="285" class="num">1</text>
+  <text x="215" y="485" text-anchor="middle" class="cap">Газогенератор</text>
+
+  <g transform="translate(100,360)"><polygon class="op" points="-15,-15 15,0 -15,15"/></g>
+  <text x="100" y="395" text-anchor="middle" class="lbl">смешение</text>
+
+  <g transform="translate(170,360)">
+    <circle class="op" r="14"/>
+    <line class="ln" x1="-10" y1="-10" x2="10" y2="10"/>
+    <line class="ln" x1="10" y1="-10" x2="-10" y2="10"/>
+    <line class="ln" x1="0" y1="-32" x2="0" y2="-16" marker-end="url(#arrow)"/>
+  </g>
+  <text x="170" y="395" text-anchor="middle" class="lbl">нагрев</text>
+
+  <g transform="translate(245,360)">
+    <rect class="op" x="-15" y="-15" width="30" height="30"/>
+    <line class="ln" x1="-15" y1="-15" x2="15" y2="15"/>
+    <line class="ln" x1="15" y1="-15" x2="-15" y2="15"/>
+  </g>
+  <text x="245" y="395" text-anchor="middle" class="lbl">хим. превр.</text>
+
+  <g transform="translate(325,360)"><polygon class="op" points="15,-15 -15,0 15,15"/></g>
+  <text x="325" y="395" text-anchor="middle" class="lbl">мех. разд.</text>
+
+  <line class="ln" x1="115" y1="360" x2="156" y2="360"/>
+  <line class="ln" x1="184" y1="360" x2="230" y2="360"/>
+  <line class="ln" x1="260" y1="360" x2="310" y2="360"/>
+
+  <line class="ln" x1="20" y1="345" x2="85" y2="355" marker-end="url(#arrow)"/>
+  <text x="25" y="338" class="stream">S1</text>
+  <line class="ln" x1="20" y1="380" x2="85" y2="370" marker-end="url(#arrow)"/>
+  <text x="25" y="395" class="stream">G3</text>
+
+  <line class="ln" x1="335" y1="375" x2="335" y2="440" marker-end="url(#arrow)"/>
+  <text x="343" y="435" class="stream">S5</text>
+
+  <!-- =============== 2. Циклон =============== -->
+  <rect class="app" x="400" y="290" width="100" height="170"/>
+  <text x="407" y="285" class="num">2</text>
+  <text x="450" y="485" text-anchor="middle" class="cap">Циклон</text>
+
+  <g transform="translate(450,360)"><polygon class="op" points="15,-15 -15,0 15,15"/></g>
+  <text x="450" y="395" text-anchor="middle" class="lbl">мех. разд.</text>
+
+  <line class="ln" x1="460" y1="375" x2="460" y2="440" marker-end="url(#arrow)"/>
+  <text x="468" y="435" class="stream">S6</text>
+
+  <line class="ln" x1="365" y1="355" x2="435" y2="355" marker-end="url(#arrow)"/>
+  <text x="385" y="348" class="stream">G1</text>
+
+  <!-- =============== 3. Скруббер (3 оператора, шире) =============== -->
+  <rect class="app" x="525" y="290" width="270" height="170"/>
+  <text x="532" y="285" class="num">3</text>
+  <text x="660" y="485" text-anchor="middle" class="cap">Скруббер</text>
+
+  <g transform="translate(560,360)"><polygon class="op" points="-15,-15 15,0 -15,15"/></g>
+  <text x="560" y="395" text-anchor="middle" class="lbl">смешение</text>
+
+  <g transform="translate(660,360)">
+    <rect class="op" x="-25" y="-12" width="50" height="24"/>
+    <line class="ln" x1="-25" y1="0" x2="25" y2="0"/>
+  </g>
+  <text x="660" y="395" text-anchor="middle" class="lbl">межф. массообмен</text>
+
+  <g transform="translate(760,360)"><polygon class="op" points="15,-15 -15,0 15,15"/></g>
+  <text x="760" y="395" text-anchor="middle" class="lbl">мех. разд.</text>
+
+  <line class="ln" x1="485" y1="355" x2="545" y2="355" marker-end="url(#arrow)"/>
+  <text x="500" y="348" class="stream">G2</text>
+  <line class="ln" x1="575" y1="360" x2="635" y2="360"/>
+  <line class="ln" x1="685" y1="360" x2="745" y2="360"/>
+
+  <line class="ln" x1="560" y1="510" x2="560" y2="375" marker-end="url(#arrow)"/>
+  <text x="540" y="505" class="stream">L1</text>
+  <line class="ln" x1="760" y1="375" x2="760" y2="510" marker-end="url(#arrow)"/>
+  <text x="768" y="500" class="stream">L2</text>
+
+  <!-- =============== 4. Насос =============== -->
+  <rect class="app" x="525" y="510" width="270" height="100"/>
+  <text x="532" y="505" class="num">4</text>
+  <text x="660" y="635" text-anchor="middle" class="cap">Насос</text>
+
+  <g transform="translate(660,560)">
+    <circle class="op" r="14"/>
+    <line class="ln" x1="-10" y1="-10" x2="10" y2="10"/>
+    <line class="ln" x1="10" y1="-10" x2="-10" y2="10"/>
+    <line class="ln" x1="-10" y1="0" x2="10" y2="0" stroke-width="2.2"/>
+  </g>
+  <text x="660" y="595" text-anchor="middle" class="lbl">сжатие</text>
+
+  <line class="ln" x1="760" y1="560" x2="675" y2="560" marker-end="url(#arrow)"/>
+  <line class="ln" x1="645" y1="560" x2="560" y2="560" marker-end="url(#arrow)"/>
+
+  <!-- =============== 5. Охладитель =============== -->
+  <rect class="app" x="820" y="290" width="170" height="170"/>
+  <text x="827" y="285" class="num">5</text>
+  <text x="905" y="485" text-anchor="middle" class="cap">Охладитель</text>
+
+  <g transform="translate(855,360)">
+    <circle class="op" r="14"/>
+    <line class="ln" x1="-10" y1="-10" x2="10" y2="10"/>
+    <line class="ln" x1="10" y1="-10" x2="-10" y2="10"/>
+    <line class="ln" x1="14" y1="0" x2="32" y2="0" marker-end="url(#arrow)"/>
+  </g>
+  <text x="855" y="395" text-anchor="middle" class="lbl">охлаждение</text>
+
+  <g transform="translate(950,360)">
+    <circle class="op" r="14"/>
+    <line class="ln" x1="-10" y1="10" x2="10" y2="-10"/>
+  </g>
+  <text x="950" y="395" text-anchor="middle" class="lbl">изм. агр. сост.</text>
+
+  <line class="ln" x1="810" y1="355" x2="840" y2="355" marker-end="url(#arrow)"/>
+  <text x="810" y="348" class="stream">G4</text>
+  <line class="ln" x1="893" y1="360" x2="935" y2="360"/>
+
+  <line class="ln" x1="855" y1="320" x2="855" y2="346" marker-end="url(#arrow)"/>
+  <text x="835" y="318" class="stream">L3</text>
+  <line class="ln" x1="887" y1="360" x2="887" y2="320"/>
+  <text x="891" y="318" class="stream">L3'</text>
+
+  <!-- =============== 6. Тонкий очиститель =============== -->
+  <rect class="app" x="1020" y="290" width="260" height="170"/>
+  <text x="1027" y="285" class="num">6</text>
+  <text x="1150" y="485" text-anchor="middle" class="cap">Тонкий очиститель</text>
+
+  <g transform="translate(1065,360)">
+    <circle class="op" r="14"/>
+    <line class="ln" x1="-10" y1="-10" x2="10" y2="10"/>
+    <line class="ln" x1="10" y1="-10" x2="-10" y2="10"/>
+    <line class="ln" x1="14" y1="0" x2="32" y2="0" marker-end="url(#arrow)"/>
+  </g>
+  <text x="1065" y="395" text-anchor="middle" class="lbl">охлаждение</text>
+
+  <g transform="translate(1160,360)">
+    <circle class="op" r="14"/>
+    <line class="ln" x1="-10" y1="10" x2="10" y2="-10"/>
+  </g>
+  <text x="1160" y="395" text-anchor="middle" class="lbl">изм. агр. сост.</text>
+
+  <g transform="translate(1245,360)"><polygon class="op" points="15,-15 -15,0 15,15"/></g>
+  <text x="1245" y="395" text-anchor="middle" class="lbl">мех. разд.</text>
+
+  <line class="ln" x1="1005" y1="355" x2="1050" y2="355" marker-end="url(#arrow)"/>
+  <text x="1005" y="348" class="stream">G5</text>
+  <line class="ln" x1="1100" y1="360" x2="1145" y2="360"/>
+  <line class="ln" x1="1175" y1="360" x2="1230" y2="360"/>
+
+  <line class="ln" x1="1255" y1="375" x2="1255" y2="440" marker-end="url(#arrow)"/>
+  <text x="1263" y="435" class="stream">L4</text>
+
+  <!-- =============== 7. Компрессор =============== -->
+  <rect class="app" x="1305" y="290" width="105" height="170"/>
+  <text x="1312" y="285" class="num">7</text>
+  <text x="1357" y="485" text-anchor="middle" class="cap">Компрессор</text>
+
+  <g transform="translate(1357,360)">
+    <circle class="op" r="14"/>
+    <line class="ln" x1="-10" y1="-10" x2="10" y2="10"/>
+    <line class="ln" x1="10" y1="-10" x2="-10" y2="10"/>
+    <line class="ln" x1="-10" y1="0" x2="10" y2="0" stroke-width="2.2"/>
+  </g>
+  <text x="1357" y="395" text-anchor="middle" class="lbl">сжатие</text>
+
+  <line class="ln" x1="1270" y1="355" x2="1342" y2="355" marker-end="url(#arrow)"/>
+  <text x="1290" y="348" class="stream">G6</text>
+
+  <!-- =============== 8. Распределитель =============== -->
+  <rect class="app" x="1430" y="290" width="90" height="170"/>
+  <text x="1437" y="285" class="num">8</text>
+  <text x="1475" y="485" text-anchor="middle" class="cap">Распределитель</text>
+
+  <g transform="translate(1475,360)">
+    <polygon class="op" points="-15,-15 15,0 -15,15"/>
+    <line class="ln" x1="-15" y1="-15" x2="-15" y2="15"/>
+  </g>
+  <text x="1475" y="395" text-anchor="middle" class="lbl">мех. разд.</text>
+
+  <line class="ln" x1="1372" y1="360" x2="1460" y2="360" marker-end="url(#arrow)"/>
+  <text x="1390" y="353" class="stream">G7</text>
+
+  <!-- =============== 9. Газгольдер =============== -->
+  <rect class="app" x="1545" y="180" width="100" height="120"/>
+  <text x="1552" y="175" class="num">9</text>
+  <text x="1595" y="320" text-anchor="middle" class="cap">Газгольдер</text>
+
+  <g transform="translate(1595,235)">
+    <circle class="op" r="14"/>
+    <line class="ln" x1="0" y1="-10" x2="0" y2="10" stroke-width="2.2"/>
+  </g>
+  <text x="1595" y="270" text-anchor="middle" class="lbl">расширение</text>
+
+  <line class="ln" x1="1490" y1="345" x2="1595" y2="345" />
+  <line class="ln" x1="1595" y1="345" x2="1595" y2="251" marker-end="url(#arrow)"/>
+
+  <line class="ln" x1="1490" y1="375" x2="1690" y2="375" marker-end="url(#arrow)"/>
+  <text x="1505" y="395" class="stream">G7 → к электрогенератору</text>
+
+  <!-- =============== Легенда =============== -->
+  <g transform="translate(40,680)">
+    <text x="0" y="0" font-weight="bold" font-size="13">Условные обозначения операторов:</text>
+
+    <g transform="translate(20,30)">
+      <rect class="op" x="-12" y="-12" width="24" height="24"/>
+      <line class="ln" x1="-12" y1="-12" x2="12" y2="12"/>
+      <line class="ln" x1="12" y1="-12" x2="-12" y2="12"/>
+    </g>
+    <text x="40" y="34" class="lbl">— химическое превращение</text>
+
+    <g transform="translate(220,30)">
+      <rect class="op" x="-18" y="-10" width="36" height="20"/>
+      <line class="ln" x1="-18" y1="0" x2="18" y2="0"/>
+    </g>
+    <text x="246" y="34" class="lbl">— межфазный массообмен</text>
+
+    <g transform="translate(440,30)"><polygon class="op" points="-12,-12 12,0 -12,12"/></g>
+    <text x="458" y="34" class="lbl">— смешение</text>
+
+    <g transform="translate(580,30)"><polygon class="op" points="12,-12 -12,0 12,12"/></g>
+    <text x="598" y="34" class="lbl">— механическое разделение</text>
+
+    <g transform="translate(800,30)">
+      <circle class="op" r="12"/>
+      <line class="ln" x1="-8" y1="-8" x2="8" y2="8"/>
+      <line class="ln" x1="8" y1="-8" x2="-8" y2="8"/>
+    </g>
+    <text x="820" y="34" class="lbl">— рекуперативный теплообмен</text>
+
+    <g transform="translate(20,70)">
+      <circle class="op" r="12"/>
+      <line class="ln" x1="-8" y1="-8" x2="8" y2="8"/>
+      <line class="ln" x1="8" y1="-8" x2="-8" y2="8"/>
+      <line class="ln" x1="0" y1="-22" x2="0" y2="-14" marker-end="url(#arrow)"/>
+    </g>
+    <text x="40" y="74" class="lbl">— нагрев</text>
+
+    <g transform="translate(150,70)">
+      <circle class="op" r="12"/>
+      <line class="ln" x1="-8" y1="-8" x2="8" y2="8"/>
+      <line class="ln" x1="8" y1="-8" x2="-8" y2="8"/>
+      <line class="ln" x1="12" y1="0" x2="26" y2="0" marker-end="url(#arrow)"/>
+    </g>
+    <text x="180" y="74" class="lbl">— охлаждение</text>
+
+    <g transform="translate(330,70)">
+      <circle class="op" r="12"/>
+      <line class="ln" x1="-8" y1="8" x2="8" y2="-8"/>
+    </g>
+    <text x="350" y="74" class="lbl">— изм. агрегатного состояния</text>
+
+    <g transform="translate(560,70)">
+      <circle class="op" r="12"/>
+      <line class="ln" x1="-8" y1="0" x2="8" y2="0" stroke-width="2.2"/>
+    </g>
+    <text x="580" y="74" class="lbl">— сжатие</text>
+
+    <g transform="translate(680,70)">
+      <circle class="op" r="12"/>
+      <line class="ln" x1="0" y1="-8" x2="0" y2="8" stroke-width="2.2"/>
+    </g>
+    <text x="700" y="74" class="lbl">— расширение</text>
+  </g>
+
+  <g transform="translate(1020,560)">
+    <text x="0" y="0" font-weight="bold" font-size="13">Потоки:</text>
+    <text x="0" y="20" class="lbl">S1 — уголь;  S5 — зола/шлак;  S6 — пыль из циклона</text>
+    <text x="0" y="38" class="lbl">L1 — вода орошения;  L2 — стоки;  L3/L3' — хладагент;  L4 — конденсат + смолы</text>
+    <text x="0" y="56" class="lbl">G1 — сырой газ;  G2 — после циклона;  G3 — воздух (дутьё);</text>
+    <text x="0" y="74" class="lbl">G4 — после скруббера;  G5 — охлаждённый;  G6 — после тонкой очистки;  G7 — товарный</text>
+  </g>
+</svg>
