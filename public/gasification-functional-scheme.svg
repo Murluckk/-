@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 760" font-family="Arial, sans-serif" font-size="14">
+  <defs>
+    <marker id="arr" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#7a4a1f"/>
+    </marker>
+    <marker id="arrK" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="black"/>
+    </marker>
+    <linearGradient id="bgBlock" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e3a55a"/>
+      <stop offset="1" stop-color="#c98538"/>
+    </linearGradient>
+    <style>
+      .blk    { fill: url(#bgBlock); stroke: #7a4a1f; stroke-width: 1.4; rx:14; ry:14; }
+      .blkTxt { fill: white; font-size: 22px; font-weight: bold; text-anchor: middle; }
+      .opBox  { fill: #fff; stroke: #b78754; stroke-width: 1.4; rx: 16; ry: 16; }
+      .opTxt  { font-size: 14px; }
+      .arrShape { fill: #d99454; stroke: #7a4a1f; stroke-width: 1.2; stroke-linejoin: round; }
+      .title  { font-size: 22px; font-weight: bold; }
+      .sub    { font-size: 13px; font-style: italic; }
+      .stage  { font-size: 13px; fill: #5a3a17; font-style: italic; }
+    </style>
+  </defs>
+
+  <text x="30" y="36" class="title">Функциональная схема газификации ТГИ в плотном слое</text>
+  <text x="30" y="58" class="sub">Чертёж, на котором в виде блоков изображены основные технологические стадии (узлы) производства; каждый блок реализует определённую функциональную подсистему</text>
+
+  <!-- Большая стрелка-вход (сырьё)   -->
+  <polygon class="arrShape" points="20,170 80,170 80,150 130,200 80,250 80,230 20,230"/>
+  <text x="75" y="280" font-size="13" font-weight="bold">Топливо (S1) + воздух (G3)</text>
+
+  <!-- БЛОК 1 — ПОДГОТОВКА СЫРЬЯ ============ -->
+  <rect class="blk" x="155" y="120" width="280" height="110"/>
+  <text x="295" y="170" class="blkTxt">1. Подготовка</text>
+  <text x="295" y="200" class="blkTxt">сырья</text>
+
+  <rect class="opBox" x="160" y="270" width="270" height="200"/>
+  <text x="295" y="295" class="opTxt" text-anchor="middle" font-weight="bold">Операции:</text>
+  <text x="180" y="325" class="opTxt">• Загрузка топлива в бункер</text>
+  <text x="180" y="348" class="opTxt">• Дозирование угля</text>
+  <text x="180" y="371" class="opTxt">• Подача в шахту газогенератора</text>
+  <text x="180" y="394" class="opTxt">• Подвод воздушного дутья</text>
+  <text x="180" y="417" class="opTxt">• Подогрев воздуха золой/шлаком</text>
+  <text x="180" y="440" class="opTxt">• Смешение S1 + G3</text>
+
+  <text x="295" y="500" class="stage" text-anchor="middle">I стадия</text>
+
+  <!-- стрелка между 1 и 2 -->
+  <polygon class="arrShape" points="445,170 510,170 510,150 560,200 510,250 510,230 445,230"/>
+
+  <!-- БЛОК 2 — ХИМИЧЕСКИЕ ПРЕВРАЩЕНИЯ ============ -->
+  <rect class="blk" x="585" y="120" width="280" height="110"/>
+  <text x="725" y="170" class="blkTxt">2. Химические</text>
+  <text x="725" y="200" class="blkTxt">превращения</text>
+
+  <rect class="opBox" x="590" y="270" width="270" height="200"/>
+  <text x="725" y="295" class="opTxt" text-anchor="middle" font-weight="bold">Операции:</text>
+  <text x="610" y="325" class="opTxt">• Сушка топлива</text>
+  <text x="610" y="348" class="opTxt">• Пиролиз (полукоксование)</text>
+  <text x="610" y="371" class="opTxt">• Восстановление CO₂, H₂O</text>
+  <text x="610" y="394" class="opTxt">• Горение углерода кокса</text>
+  <text x="610" y="417" class="opTxt">• Шлакообразование</text>
+  <text x="610" y="440" class="opTxt">• Выгрузка золы и шлака (S5)</text>
+
+  <text x="725" y="500" class="stage" text-anchor="middle">II стадия</text>
+
+  <!-- стрелка между 2 и 3 -->
+  <polygon class="arrShape" points="875,170 940,170 940,150 990,200 940,250 940,230 875,230"/>
+
+  <!-- БЛОК 3 — ВЫДЕЛЕНИЕ И ОЧИСТКА ============ -->
+  <rect class="blk" x="1015" y="120" width="320" height="110"/>
+  <text x="1175" y="160" class="blkTxt">3. Выделение</text>
+  <text x="1175" y="188" class="blkTxt">и очистка</text>
+  <text x="1175" y="216" class="blkTxt">продукта</text>
+
+  <rect class="opBox" x="1020" y="270" width="310" height="200"/>
+  <text x="1175" y="295" class="opTxt" text-anchor="middle" font-weight="bold">Операции:</text>
+  <text x="1040" y="325" class="opTxt">• Сухое пылеудаление (циклон)</text>
+  <text x="1040" y="348" class="opTxt">• Мокрое пылеудаление (скруббер)</text>
+  <text x="1040" y="371" class="opTxt">• Подача орошающей воды (насос)</text>
+  <text x="1040" y="394" class="opTxt">• Охлаждение газа</text>
+  <text x="1040" y="417" class="opTxt">• Конденсация воды и углеводородов</text>
+  <text x="1040" y="440" class="opTxt">• Компримирование, распределение,</text>
+  <text x="1054" y="458" class="opTxt">  буферное хранение</text>
+
+  <text x="1175" y="500" class="stage" text-anchor="middle">III стадия</text>
+
+  <!-- выход -->
+  <polygon class="arrShape" points="1345,170 1405,170 1405,150 1460,200 1405,250 1405,230 1345,230"/>
+  <text x="1345" y="280" font-size="13" font-weight="bold">Товарный газ (G7)</text>
+
+  <!-- Связи рециркуляции / побочных потоков ============ -->
+  <line x1="725" y1="475" x2="725" y2="555" stroke="black" stroke-width="1.4" marker-end="url(#arrK)"/>
+  <text x="660" y="555" font-size="13">S5 — зола / шлак</text>
+
+  <line x1="1175" y1="475" x2="1175" y2="555" stroke="black" stroke-width="1.4" marker-end="url(#arrK)"/>
+  <text x="1100" y="555" font-size="13">S6 — пыль; L4 — конденсат + смолы; L2 — стоки</text>
+
+  <!-- Подпись внизу ============ -->
+  <text x="30" y="660" font-size="14" font-weight="bold">Связь со стадиями:</text>
+  <text x="30" y="685" font-size="13">1 — подготовка сырья (загрузка и подвод дутья в газогенератор)</text>
+  <text x="30" y="705" font-size="13">2 — химические превращения (сушка → пиролиз → восстановление → горение в плотном слое газогенератора)</text>
+  <text x="30" y="725" font-size="13">3 — выделение и очистка продукта (циклон → скруббер → охладитель → тонкий очиститель → компрессор → распределитель → газгольдер)</text>
+</svg>

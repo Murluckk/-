@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 760" font-family="Arial, sans-serif" font-size="14">
+  <defs>
+    <marker id="arr" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto">
+      <path d="M0,0 L11,5.5 L0,11 z" fill="black"/>
+    </marker>
+    <style>
+      .blk { fill: white; stroke: black; stroke-width: 1.6; }
+      .num { font-size: 20px; font-weight: bold; text-anchor: middle; }
+      .lab { font-size: 13px; font-weight: bold; }
+      .ln  { fill: none; stroke: black; stroke-width: 1.4; }
+      .title { font-size: 20px; font-weight: bold; }
+      .sub   { font-size: 13px; font-style: italic; }
+      .leg   { font-size: 13px; }
+      .legH  { font-size: 14px; font-weight: bold; }
+    </style>
+  </defs>
+
+  <text x="30" y="34" class="title">Структурная схема газификации ТГИ в плотном слое</text>
+  <text x="30" y="56" class="sub">Каждый аппарат — блок с входами/выходами; технологические связи — направленные линии</text>
+
+  <!-- параметры блоков -->
+  <!-- 1 Газогенератор -->
+  <rect class="blk" x="120" y="270" width="80" height="80"/>
+  <text x="160" y="318" class="num">1</text>
+
+  <!-- 2 Циклон -->
+  <rect class="blk" x="290" y="270" width="80" height="80"/>
+  <text x="330" y="318" class="num">2</text>
+
+  <!-- 3 Скруббер -->
+  <rect class="blk" x="460" y="270" width="80" height="80"/>
+  <text x="500" y="318" class="num">3</text>
+
+  <!-- 4 Насос (под 3) -->
+  <rect class="blk" x="460" y="430" width="80" height="80"/>
+  <text x="500" y="478" class="num">4</text>
+
+  <!-- 5 Охладитель -->
+  <rect class="blk" x="630" y="270" width="80" height="80"/>
+  <text x="670" y="318" class="num">5</text>
+
+  <!-- 6 Тонкий очиститель -->
+  <rect class="blk" x="800" y="270" width="80" height="80"/>
+  <text x="840" y="318" class="num">6</text>
+
+  <!-- 7 Компрессор -->
+  <rect class="blk" x="970" y="270" width="80" height="80"/>
+  <text x="1010" y="318" class="num">7</text>
+
+  <!-- 8 Распределитель -->
+  <rect class="blk" x="1140" y="270" width="80" height="80"/>
+  <text x="1180" y="318" class="num">8</text>
+
+  <!-- 9 Газгольдер -->
+  <rect class="blk" x="1310" y="160" width="80" height="80"/>
+  <text x="1350" y="208" class="num">9</text>
+
+  <!-- Связи и потоки ====== -->
+
+  <!-- Вход S01 (уголь) в 1 -->
+  <line class="ln" x1="40" y1="310" x2="115" y2="310" marker-end="url(#arr)"/>
+  <text x="60" y="302" class="lab">S₀₁</text>
+
+  <!-- Вход G01 (воздух) в 1 снизу -->
+  <line class="ln" x1="160" y1="395" x2="160" y2="354" marker-end="url(#arr)"/>
+  <text x="135" y="395" class="lab">G₀₁</text>
+
+  <!-- Выход S10 (зола) из 1 вниз -->
+  <line class="ln" x1="180" y1="354" x2="180" y2="395" marker-end="url(#arr)"/>
+  <text x="187" y="395" class="lab">S₁₀</text>
+
+  <!-- 1 -> 2 газ G12 -->
+  <line class="ln" x1="200" y1="310" x2="285" y2="310" marker-end="url(#arr)"/>
+  <text x="225" y="302" class="lab">G₁₂</text>
+
+  <!-- Выход S20 (пыль) из 2 вниз -->
+  <line class="ln" x1="330" y1="354" x2="330" y2="395" marker-end="url(#arr)"/>
+  <text x="337" y="395" class="lab">S₂₀</text>
+
+  <!-- 2 -> 3 газ G23 -->
+  <line class="ln" x1="370" y1="310" x2="455" y2="310" marker-end="url(#arr)"/>
+  <text x="395" y="302" class="lab">G₂₃</text>
+
+  <!-- 4 -> 3 жидкость L43 (вода) -->
+  <line class="ln" x1="500" y1="430" x2="500" y2="354" marker-end="url(#arr)"/>
+  <text x="465" y="400" class="lab">L₄₃</text>
+
+  <!-- 3 -> 4 жидкость L34 (стоки) -->
+  <line class="ln" x1="530" y1="354" x2="530" y2="430" marker-end="url(#arr)"/>
+  <text x="535" y="400" class="lab">L₃₄</text>
+
+  <!-- Вход свежей воды в 4 (L02) -->
+  <line class="ln" x1="420" y1="470" x2="455" y2="470" marker-end="url(#arr)"/>
+  <text x="395" y="465" class="lab">L₀₂</text>
+
+  <!-- Выход стоков из 4 (L40) -->
+  <line class="ln" x1="540" y1="495" x2="610" y2="495" marker-end="url(#arr)"/>
+  <text x="610" y="488" class="lab">L₄₀</text>
+
+  <!-- 3 -> 5 газ G35 -->
+  <line class="ln" x1="540" y1="310" x2="625" y2="310" marker-end="url(#arr)"/>
+  <text x="565" y="302" class="lab">G₃₅</text>
+
+  <!-- L05 хладагент в 5 (вход сверху) -->
+  <line class="ln" x1="660" y1="220" x2="660" y2="265" marker-end="url(#arr)"/>
+  <text x="630" y="218" class="lab">L₀₅</text>
+
+  <!-- L50 отработанный хладагент (выход вверх) -->
+  <line class="ln" x1="690" y1="265" x2="690" y2="220" marker-end="url(#arr)"/>
+  <text x="695" y="218" class="lab">L₅₀</text>
+
+  <!-- 5 -> 6 газ G56 -->
+  <line class="ln" x1="710" y1="310" x2="795" y2="310" marker-end="url(#arr)"/>
+  <text x="735" y="302" class="lab">G₅₆</text>
+
+  <!-- 6 -> вниз L60 (вода + смолы) -->
+  <line class="ln" x1="840" y1="354" x2="840" y2="395" marker-end="url(#arr)"/>
+  <text x="847" y="395" class="lab">L₆₀</text>
+
+  <!-- 6 -> 7 газ G67 -->
+  <line class="ln" x1="880" y1="310" x2="965" y2="310" marker-end="url(#arr)"/>
+  <text x="905" y="302" class="lab">G₆₇</text>
+
+  <!-- 7 -> 8 газ G78 -->
+  <line class="ln" x1="1050" y1="310" x2="1135" y2="310" marker-end="url(#arr)"/>
+  <text x="1075" y="302" class="lab">G₇₈</text>
+
+  <!-- 8 -> 9 газ G89 (вверх по углу) -->
+  <line class="ln" x1="1220" y1="295" x2="1265" y2="295"/>
+  <line class="ln" x1="1265" y1="295" x2="1265" y2="200"/>
+  <line class="ln" x1="1265" y1="200" x2="1305" y2="200" marker-end="url(#arr)"/>
+  <text x="1230" y="287" class="lab">G₈₉</text>
+
+  <!-- 9 -> выход G90 -->
+  <line class="ln" x1="1390" y1="200" x2="1500" y2="200" marker-end="url(#arr)"/>
+  <text x="1410" y="192" class="lab">G₉₀</text>
+  <text x="1410" y="218" class="leg">→ потребитель / газгольдер</text>
+
+  <!-- 8 -> выход G80 (на электрогенератор) -->
+  <line class="ln" x1="1220" y1="325" x2="1500" y2="325" marker-end="url(#arr)"/>
+  <text x="1410" y="318" class="lab">G₈₀</text>
+  <text x="1410" y="343" class="leg">→ электрогенератор</text>
+
+  <!-- Подписи аппаратов ============ -->
+  <text x="160" y="370" class="leg" text-anchor="middle">Газогенератор</text>
+  <text x="330" y="370" class="leg" text-anchor="middle">Циклон</text>
+  <text x="500" y="370" class="leg" text-anchor="middle">Скруббер</text>
+  <text x="500" y="530" class="leg" text-anchor="middle">Насос</text>
+  <text x="670" y="370" class="leg" text-anchor="middle">Охладитель</text>
+  <text x="840" y="370" class="leg" text-anchor="middle">Тонкий очиститель</text>
+  <text x="1010" y="370" class="leg" text-anchor="middle">Компрессор</text>
+  <text x="1180" y="370" class="leg" text-anchor="middle">Распределитель</text>
+  <text x="1350" y="260" class="leg" text-anchor="middle">Газгольдер</text>
+
+  <!-- Легенда (внизу) ============ -->
+  <g transform="translate(40,580)">
+    <text x="0" y="0" class="legH">Аппараты:</text>
+    <text x="0" y="22" class="leg">1 — газогенератор;  2 — циклон;  3 — скруббер;  4 — насос;  5 — охладитель;</text>
+    <text x="0" y="42" class="leg">6 — тонкий очиститель;  7 — компрессор;  8 — распределитель;  9 — газгольдер.</text>
+  </g>
+
+  <g transform="translate(620,580)">
+    <text x="0" y="0" class="legH">Потоки (двойной индекс «откуда–куда», 0 — внешняя среда):</text>
+    <text x="0" y="22" class="leg">S₀₁ — уголь (вход);  S₁₀ — зола/шлак;  S₂₀ — угольно-зольная пыль из циклона;</text>
+    <text x="0" y="42" class="leg">G₀₁ — воздух (дутьё);  G₁₂…G₈₉ — генераторный газ между аппаратами;  G₈₀, G₉₀ — товарный газ;</text>
+    <text x="0" y="62" class="leg">L₀₂ — свежая вода;  L₄₀ — сточные воды;  L₀₅, L₅₀ — хладагент (вход/выход);  L₆₀ — конденсат + углеводороды (смолы).</text>
+  </g>
+</svg>
