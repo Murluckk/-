@@ -1,105 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 760" font-family="Arial, sans-serif" font-size="14">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 540" font-family="Arial, sans-serif" font-size="13">
   <defs>
-    <marker id="arr" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto">
-      <path d="M0,0 L12,6 L0,12 z" fill="#7a4a1f"/>
-    </marker>
-    <marker id="arrK" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="black"/>
     </marker>
-    <linearGradient id="bgBlock" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#e3a55a"/>
-      <stop offset="1" stop-color="#c98538"/>
-    </linearGradient>
     <style>
-      .blk    { fill: url(#bgBlock); stroke: #7a4a1f; stroke-width: 1.4; rx:14; ry:14; }
-      .blkTxt { fill: white; font-size: 22px; font-weight: bold; text-anchor: middle; }
-      .opBox  { fill: #fff; stroke: #b78754; stroke-width: 1.4; rx: 16; ry: 16; }
-      .opTxt  { font-size: 14px; }
-      .arrShape { fill: #d99454; stroke: #7a4a1f; stroke-width: 1.2; stroke-linejoin: round; }
-      .title  { font-size: 22px; font-weight: bold; }
-      .sub    { font-size: 13px; font-style: italic; }
-      .stage  { font-size: 13px; fill: #5a3a17; font-style: italic; }
+      .blk   { fill: white; stroke: black; stroke-width: 1.4; }
+      .ttl   { font-size: 13px; font-style: italic; text-anchor: middle; }
+      .op    { font-size: 12px; }
+      .lab   { font-size: 12px; font-style: italic; }
+      .ln    { fill: none; stroke: black; stroke-width: 1.2; }
+      .title { font-size: 18px; font-weight: bold; }
+      .sub   { font-size: 12px; font-style: italic; }
     </style>
   </defs>
 
-  <text x="30" y="36" class="title">Функциональная схема газификации ТГИ в плотном слое</text>
-  <text x="30" y="58" class="sub">Чертёж, на котором в виде блоков изображены основные технологические стадии (узлы) производства; каждый блок реализует определённую функциональную подсистему</text>
+  <text x="20" y="28" class="title">Функциональная схема газификации ТГИ в плотном слое</text>
+  <text x="20" y="48" class="sub">Чертёж, на котором в виде блоков изображены технологические стадии (узлы) производства; внутри каждого блока перечислены реализуемые операции</text>
 
-  <!-- Большая стрелка-вход (сырьё)   -->
-  <polygon class="arrShape" points="20,170 80,170 80,150 130,200 80,250 80,230 20,230"/>
-  <text x="75" y="280" font-size="13" font-weight="bold">Топливо (S1) + воздух (G3)</text>
+  <!-- ввод сырья сверху -->
+  <line class="ln" x1="180" y1="100" x2="180" y2="140" marker-end="url(#arr)"/>
+  <text x="190" y="115" class="lab">Сырьё (уголь S1) + воздух G3</text>
 
-  <!-- БЛОК 1 — ПОДГОТОВКА СЫРЬЯ ============ -->
-  <rect class="blk" x="155" y="120" width="280" height="110"/>
-  <text x="295" y="170" class="blkTxt">1. Подготовка</text>
-  <text x="295" y="200" class="blkTxt">сырья</text>
+  <!-- ===== Блок 1 ===== -->
+  <rect class="blk" x="60" y="140" width="380" height="40"/>
+  <text x="250" y="165" class="ttl">Подготовка сырья</text>
 
-  <rect class="opBox" x="160" y="270" width="270" height="200"/>
-  <text x="295" y="295" class="opTxt" text-anchor="middle" font-weight="bold">Операции:</text>
-  <text x="180" y="325" class="opTxt">• Загрузка топлива в бункер</text>
-  <text x="180" y="348" class="opTxt">• Дозирование угля</text>
-  <text x="180" y="371" class="opTxt">• Подача в шахту газогенератора</text>
-  <text x="180" y="394" class="opTxt">• Подвод воздушного дутья</text>
-  <text x="180" y="417" class="opTxt">• Подогрев воздуха золой/шлаком</text>
-  <text x="180" y="440" class="opTxt">• Смешение S1 + G3</text>
+  <rect class="blk" x="60" y="180" width="380" height="170"/>
+  <text x="80" y="205" class="op">Загрузка угля в бункер</text>
+  <text x="80" y="228" class="op">Дозирование и подача в шахту газогенератора</text>
+  <text x="80" y="251" class="op">Подвод воздушного дутья</text>
+  <text x="80" y="274" class="op">Подогрев воздуха золой и шлаком</text>
+  <text x="80" y="297" class="op">Смешение S1 + G3 в верхней части слоя</text>
+  <text x="80" y="320" class="op">Регулирование толщины плотного слоя</text>
+  <text x="80" y="343" class="op">(колосниковая решётка)</text>
 
-  <text x="295" y="500" class="stage" text-anchor="middle">I стадия</text>
+  <!-- стрелка 1 -> 2 -->
+  <line class="ln" x1="440" y1="245" x2="510" y2="245" marker-end="url(#arr)"/>
+  <text x="445" y="237" class="lab">Подготовленное топливо</text>
 
-  <!-- стрелка между 1 и 2 -->
-  <polygon class="arrShape" points="445,170 510,170 510,150 560,200 510,250 510,230 445,230"/>
+  <!-- ===== Блок 2 ===== -->
+  <rect class="blk" x="510" y="140" width="380" height="40"/>
+  <text x="700" y="165" class="ttl">Химические превращения</text>
 
-  <!-- БЛОК 2 — ХИМИЧЕСКИЕ ПРЕВРАЩЕНИЯ ============ -->
-  <rect class="blk" x="585" y="120" width="280" height="110"/>
-  <text x="725" y="170" class="blkTxt">2. Химические</text>
-  <text x="725" y="200" class="blkTxt">превращения</text>
+  <rect class="blk" x="510" y="180" width="380" height="170"/>
+  <text x="530" y="205" class="op">Сушка топлива поднимающимися горячими газами</text>
+  <text x="530" y="228" class="op">Пиролиз (полукоксование) с выделением летучих</text>
+  <text x="530" y="251" class="op">Восстановление CO₂ и H₂O до CO и H₂</text>
+  <text x="530" y="274" class="op">Горение углерода кокса в зоне дутья</text>
+  <text x="530" y="297" class="op">Шлакообразование и отвод золы (S5)</text>
+  <text x="530" y="320" class="op">Образование сырого генераторного газа G1</text>
 
-  <rect class="opBox" x="590" y="270" width="270" height="200"/>
-  <text x="725" y="295" class="opTxt" text-anchor="middle" font-weight="bold">Операции:</text>
-  <text x="610" y="325" class="opTxt">• Сушка топлива</text>
-  <text x="610" y="348" class="opTxt">• Пиролиз (полукоксование)</text>
-  <text x="610" y="371" class="opTxt">• Восстановление CO₂, H₂O</text>
-  <text x="610" y="394" class="opTxt">• Горение углерода кокса</text>
-  <text x="610" y="417" class="opTxt">• Шлакообразование</text>
-  <text x="610" y="440" class="opTxt">• Выгрузка золы и шлака (S5)</text>
+  <!-- стрелка 2 -> 3 -->
+  <line class="ln" x1="890" y1="245" x2="960" y2="245" marker-end="url(#arr)"/>
+  <text x="895" y="237" class="lab">Сырой генераторный газ G1</text>
 
-  <text x="725" y="500" class="stage" text-anchor="middle">II стадия</text>
+  <!-- ===== Блок 3 ===== -->
+  <rect class="blk" x="960" y="140" width="440" height="40"/>
+  <text x="1180" y="165" class="ttl">Выделение и очистка продукта</text>
 
-  <!-- стрелка между 2 и 3 -->
-  <polygon class="arrShape" points="875,170 940,170 940,150 990,200 940,250 940,230 875,230"/>
+  <rect class="blk" x="960" y="180" width="440" height="170"/>
+  <text x="980" y="205" class="op">Сухое пылеудаление в циклоне (S6 — пыль)</text>
+  <text x="980" y="228" class="op">Мокрое пылеудаление в скруббере (L1 — вода, L2 — стоки)</text>
+  <text x="980" y="251" class="op">Подача орошающей воды насосом</text>
+  <text x="980" y="274" class="op">Охлаждение газа (хладагент L3 / L3′)</text>
+  <text x="980" y="297" class="op">Тонкая очистка от воды и углеводородов (L4 — конденсат + смолы)</text>
+  <text x="980" y="320" class="op">Компримирование, распределение, буферное хранение</text>
 
-  <!-- БЛОК 3 — ВЫДЕЛЕНИЕ И ОЧИСТКА ============ -->
-  <rect class="blk" x="1015" y="120" width="320" height="110"/>
-  <text x="1175" y="160" class="blkTxt">3. Выделение</text>
-  <text x="1175" y="188" class="blkTxt">и очистка</text>
-  <text x="1175" y="216" class="blkTxt">продукта</text>
+  <!-- выход справа -->
+  <line class="ln" x1="1400" y1="245" x2="1470" y2="245" marker-end="url(#arr)"/>
+  <text x="1405" y="237" class="lab">Товарный газ G7</text>
 
-  <rect class="opBox" x="1020" y="270" width="310" height="200"/>
-  <text x="1175" y="295" class="opTxt" text-anchor="middle" font-weight="bold">Операции:</text>
-  <text x="1040" y="325" class="opTxt">• Сухое пылеудаление (циклон)</text>
-  <text x="1040" y="348" class="opTxt">• Мокрое пылеудаление (скруббер)</text>
-  <text x="1040" y="371" class="opTxt">• Подача орошающей воды (насос)</text>
-  <text x="1040" y="394" class="opTxt">• Охлаждение газа</text>
-  <text x="1040" y="417" class="opTxt">• Конденсация воды и углеводородов</text>
-  <text x="1040" y="440" class="opTxt">• Компримирование, распределение,</text>
-  <text x="1054" y="458" class="opTxt">  буферное хранение</text>
+  <!-- Возврат рециркуляции (как в образце "Газовый теплоноситель") -->
+  <line class="ln" x1="1180" y1="350" x2="1180" y2="395"/>
+  <line class="ln" x1="1180" y1="395" x2="700" y2="395"/>
+  <line class="ln" x1="700" y1="395" x2="700" y2="350" marker-end="url(#arr)"/>
+  <text x="900" y="388" class="lab" text-anchor="middle">Рециркуляция тепла дымовых / горячих газов</text>
 
-  <text x="1175" y="500" class="stage" text-anchor="middle">III стадия</text>
+  <!-- Побочные потоки вниз с подписями -->
+  <line class="ln" x1="180" y1="350" x2="180" y2="430" marker-end="url(#arr)"/>
+  <text x="190" y="425" class="lab">Подогретый воздух (внутр.)</text>
 
-  <!-- выход -->
-  <polygon class="arrShape" points="1345,170 1405,170 1405,150 1460,200 1405,250 1405,230 1345,230"/>
-  <text x="1345" y="280" font-size="13" font-weight="bold">Товарный газ (G7)</text>
+  <line class="ln" x1="700" y1="350" x2="700" y2="455" marker-end="url(#arr)"/>
+  <text x="710" y="450" class="lab">Зола / шлак S5</text>
 
-  <!-- Связи рециркуляции / побочных потоков ============ -->
-  <line x1="725" y1="475" x2="725" y2="555" stroke="black" stroke-width="1.4" marker-end="url(#arrK)"/>
-  <text x="660" y="555" font-size="13">S5 — зола / шлак</text>
-
-  <line x1="1175" y1="475" x2="1175" y2="555" stroke="black" stroke-width="1.4" marker-end="url(#arrK)"/>
-  <text x="1100" y="555" font-size="13">S6 — пыль; L4 — конденсат + смолы; L2 — стоки</text>
-
-  <!-- Подпись внизу ============ -->
-  <text x="30" y="660" font-size="14" font-weight="bold">Связь со стадиями:</text>
-  <text x="30" y="685" font-size="13">1 — подготовка сырья (загрузка и подвод дутья в газогенератор)</text>
-  <text x="30" y="705" font-size="13">2 — химические превращения (сушка → пиролиз → восстановление → горение в плотном слое газогенератора)</text>
-  <text x="30" y="725" font-size="13">3 — выделение и очистка продукта (циклон → скруббер → охладитель → тонкий очиститель → компрессор → распределитель → газгольдер)</text>
+  <line class="ln" x1="1180" y1="350" x2="1180" y2="455"/>
+  <line class="ln" x1="1100" y1="455" x2="1260" y2="455"/>
+  <line class="ln" x1="1100" y1="455" x2="1100" y2="495" marker-end="url(#arr)"/>
+  <text x="1080" y="490" class="lab" text-anchor="end">S6 — пыль</text>
+  <line class="ln" x1="1180" y1="455" x2="1180" y2="495" marker-end="url(#arr)"/>
+  <text x="1180" y="510" class="lab" text-anchor="middle">L2 — стоки</text>
+  <line class="ln" x1="1260" y1="455" x2="1260" y2="495" marker-end="url(#arr)"/>
+  <text x="1280" y="490" class="lab">L4 — смолы</text>
 </svg>
